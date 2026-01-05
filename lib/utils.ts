@@ -1,8 +1,12 @@
 export const getImageUrl = (url: string, subfolder: string = 'houseboats') => {
     if (!url) return '';
-    const filename = url.split('/').pop();
+    if (url.startsWith('http') || url.startsWith('https')) return url;
+    if (url.startsWith('/')) return url;
+
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
-    return `${backendUrl}/uploads/${subfolder}/${filename}`;
+
+    // Clean up the URL construction
+    return `${backendUrl}/uploads/${subfolder}/${url}`;
 };
 
 export const formatPrice = (price: number) => {

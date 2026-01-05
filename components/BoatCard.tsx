@@ -24,7 +24,7 @@ const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
         >
             <div className="relative aspect-[3/2] md:aspect-[4/5] overflow-hidden bg-ivory-100">
                 <Image
-                    src={getImageUrl(boat.images.hero)}
+                    src={getImageUrl(boat.images.hero, 'houseboats')}
                     alt={boat.name}
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"

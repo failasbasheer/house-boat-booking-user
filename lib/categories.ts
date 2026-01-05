@@ -28,9 +28,7 @@ const mapDBCategoryToFrontend = (doc: ICategory, boatCount: number = 0): Categor
         heroImage: plain.imagePlaceholder
             ? (plain.imagePlaceholder.startsWith('http') || plain.imagePlaceholder.startsWith('/packages')
                 ? plain.imagePlaceholder
-                : plain.imagePlaceholder.startsWith('/uploads')
-                    ? `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'}${plain.imagePlaceholder}`
-                    : `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'}/uploads/category/${plain.imagePlaceholder}`)
+                : `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'}/uploads/category/${plain.imagePlaceholder}`)
             : `/packages/${plain.slug}.webp`,
         testimonials: (plain.reviews || []).map((r: any, index: number) => ({
             id: index,

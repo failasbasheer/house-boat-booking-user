@@ -95,7 +95,7 @@ export default function BoatDetailsModal({ boat, onClose }: BoatDetailsModalProp
                                     const allRawImages = [...standardImages, ...galleryArray, ...otherImages];
                                     const uniqueImages = Array.from(new Set(allRawImages));
 
-                                    const galleryImages = uniqueImages.map(img => getImageUrl(img));
+                                    const galleryImages = uniqueImages.map(img => getImageUrl(img, 'houseboats'));
 
                                     if (galleryImages.length === 0) return (
                                         <div className="w-full h-full flex items-center justify-center text-white/50">No images available</div>
