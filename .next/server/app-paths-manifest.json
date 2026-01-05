@@ -1,4 +1,10 @@
 {
-  "/not-found": "app/not-found.js",
-  "/page": "app/page.js"
+  "/_not-found": "app/_not-found.js",
+  "/api/categories/[slug]/route": "app/api/categories/[slug]/route.js",
+  "/api/categories/route": "app/api/categories/route.js",
+  "/all-boats/page": "app/all-boats/page.js",
+  "/fleet/page": "app/fleet/page.js",
+  "/page": "app/page.js",
+  "/api/houseboats/route": "app/api/houseboats/route.js",
+  "/categories/[slug]/page": "app/categories/[slug]/page.js"
 }

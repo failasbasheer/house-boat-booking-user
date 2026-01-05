@@ -1,50 +1,75 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const Gallery: React.FC = () => {
+  const containerRef = useScrollAnimation();
+
   const images = [
-    { src: '/images/luxury-houseboat-exterior.webp', alt: 'Luxury Houseboat Exterior', span: 'md:col-span-2 md:row-span-2' },
-    { src: '/images/palm-lined-canals.webp', alt: 'Palm Lined Canals', span: 'md:col-span-1 md:row-span-1' },
-    { src: '/images/premium-interiors.webp', alt: 'Premium Interiors', span: 'md:col-span-1 md:row-span-1' },
-    { src: '/images/sunset.jpg', alt: 'Backwater Sunset', span: 'md:col-span-1 md:row-span-2' },
-    { src: '/images/serene-waters.jpg', alt: 'Serene Waters', span: 'md:col-span-2 md:row-span-1' },
-    { src: '/images/onboard-dining.jpg', alt: 'Onboard Dining', span: 'md:col-span-1 md:row-span-1' },
+    { src: '/images/luxury-houseboat-exterior.webp', alt: 'Luxury Houseboat Exterior', className: 'md:col-span-2 md:row-span-2 h-[500px]' },
+    { src: '/images/palm-lined-canals.webp', alt: 'Palm Lined Canals', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
+    { src: '/images/premium-interiors.webp', alt: 'Premium Interiors', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
+    { src: '/images/sunset.jpg', alt: 'Backwater Sunset', className: 'md:col-span-1 md:row-span-2 h-[500px]' },
+    { src: '/images/serene-waters.webp', alt: 'Serene Waters', className: 'md:col-span-2 md:row-span-1 h-[240px]' },
+    { src: '/images/onboard-dining.webp', alt: 'Onboard Dining', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
   ];
 
   return (
-    <section id="gallery" className="py-8 md:py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="text-center mb-12 md:mb-16">
-          <span className="text-bronze-600 uppercase tracking-widest text-xs font-bold mb-3 block">
-            Visual Journey
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-forest-950">Life on the Water</h2>
+    <section ref={containerRef} id="gallery" className="py-20 md:py-32 bg-white overflow-hidden">
+      <div className="max-w-[90rem] mx-auto px-6">
+
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="gsap-fade-up max-w-2xl">
+            <span className="text-bronze-600 uppercase tracking-[0.2em] text-xs font-bold mb-4 block">
+              Visual Journey
+            </span>
+            <h2 className="text-4xl md:text-6xl font-serif text-forest-950 leading-[1.1]">
+              Life on the <br />
+              <span className="italic text-bronze-700">Backwaters</span>
+            </h2>
+          </div>
+          <div className="gsap-fade-up md:pb-2">
+            <p className="text-espresso-600 max-w-sm text-sm leading-relaxed">
+              Experience the timeless beauty of Alleppey through our lens. Every moment is a painting in motion.
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 auto-rows-[250px]">
+        {/* Masonry Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 gsap-stagger-container">
           {images.map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: 'easeOut' }}
-              className={`relative rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 ${item.span}`}
+              className={`gsap-stagger-item relative group rounded-3xl overflow-hidden shadow-lg ${item.className}`}
             >
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                <p className="text-white text-lg font-serif tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div className="overflow-hidden w-full h-full relative">
+                {/* Parallax Image */}
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-[115%] object-cover absolute top-0 left-0 transition-transform duration-[2s] ease-out group-hover:scale-105"
+                  style={{ top: '-7.5%' }} // Center the overflow
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/packages/budget.jpg';
+                  }}
+                />
+              </div>
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              {/* Content */}
+              <div className="absolute bottom-0 left-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
+                <span className="text-white/80 text-[10px] uppercase tracking-widest font-bold mb-2 block">
+                  Moments
+                </span>
+                <p className="text-white text-xl font-serif tracking-wide">
                   {item.alt}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

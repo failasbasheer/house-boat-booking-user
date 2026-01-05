@@ -1,86 +1,72 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Clock, Tag } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { PRICING_PACKAGES, WHATSAPP_NUMBER } from '../constants';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-export const Pricing: React.FC = () => {
+export const PricingSplitFocus: React.FC = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const containerRef = useScrollAnimation();
+
   return (
-    <section id="pricing" className="py-8 bg-white border-t border-ivory-200">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-red-200 shadow-sm animate-pulse">
-            <Tag className="w-3.5 h-3.5" />
-            Limited Time Offer! 20% OFF
-          </div>
-          <h2 className="text-3xl md:text-5xl font-serif text-forest-950 mb-4">
-            Discover Great<br className="hidden md:block" /> Houseboat Discounts & Packages
-          </h2>
-          <p className="text-espresso-500 font-light max-w-lg mx-auto">
-            Book before the deal ends to secure your preferred date.
-          </p>
+    <section ref={containerRef} id="pricing" className="bg-white min-h-screen flex flex-col lg:flex-row">
+
+      <div className="w-full lg:w-[45%] p-8 lg:p-20 flex flex-col justify-center bg-white border-r border-stone-200 z-10 gsap-fade-right">
+        <div className="mb-12">
+          <span className="text-amber-700 font-bold tracking-widest text-xs uppercase mb-4 block">Selection</span>
+          <h2 className="text-4xl md:text-5xl font-serif text-stone-900">Choose Your <br />Experience</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-4 gsap-stagger-container">
           {PRICING_PACKAGES.map((pkg, idx) => (
-            <motion.div
+            <div
               key={pkg.title}
-              initial={{ opacity: 0, x: idx === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative bg-white rounded-2xl p-8 border border-ivory-200 shadow-sm hover:shadow-xl hover:border-bronze-200 transition-all duration-300 flex flex-col"
+              onMouseEnter={() => setActiveIdx(idx)}
+              className={`group cursor-pointer p-6 rounded-2xl transition-all duration-300 border gsap-stagger-item ${activeIdx === idx
+                ? 'bg-stone-900 text-white border-stone-900 shadow-xl'
+                : 'bg-white text-stone-500 border-stone-100 hover:border-stone-300'
+                }`}
             >
-              <div className="absolute top-0 right-0 p-6">
-                <span className="text-[10px] font-bold text-forest-800 uppercase tracking-widest bg-forest-50 border border-forest-100 px-3 py-1 rounded-full">
-                  {pkg.bestFor}
-                </span>
+              <div className="flex justify-end items-start mb-2 min-h-[20px]">
+                {activeIdx === idx && <ArrowUpRight className="w-5 h-5 text-white" />}
               </div>
 
-              <h3 className="text-2xl font-serif text-forest-950 mb-2">{pkg.title}</h3>
-              <div className="flex items-center gap-2 text-espresso-500 mb-6">
-                <Clock className="w-3.5 h-3.5 text-bronze-600" />
-                <span className="text-xs font-medium uppercase tracking-wide">{pkg.duration}</span>
-              </div>
+              <h3 className={`text-2xl font-serif mb-2 ${activeIdx === idx ? 'text-white' : 'text-stone-900'}`}>
+                {pkg.title}
+              </h3>
 
-              <p className="text-espresso-800 mb-6 leading-relaxed font-normal text-sm flex-grow">
-                {pkg.description}
-              </p>
-
-              <ul className="space-y-3 mb-8">
-                {pkg.includes.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-espresso-900">
-                    <div className="w-1.5 h-1.5 rounded-full bg-bronze-400"></div>
-                    <span className="text-sm font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex items-center justify-between mt-auto pt-6 border-t border-ivory-100">
-                <div>
-                  <p className="text-espresso-400 text-[10px] uppercase tracking-wide font-bold">Starting from</p>
-                  <p className="text-xl md:text-2xl text-forest-900 font-serif">{pkg.priceEstimate}</p>
+              <div className={`overflow-hidden transition-all duration-300 ${activeIdx === idx ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+                <p className="text-sm font-light leading-relaxed opacity-80 mb-4">{pkg.description}</p>
+                <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                  <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="text-xs font-bold uppercase tracking-widest hover:text-amber-300 transition-colors">
+                    Enquire Now
+                  </a>
                 </div>
-                <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                  className="px-6 py-2.5 bg-forest-900 text-white hover:bg-forest-800 rounded-lg font-semibold text-sm transition-all shadow-lg shadow-forest-900/10 hover:shadow-forest-900/20"
-                >
-                  Book Now
-                </a>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-
-        <div className="mt-12 bg-white p-6 rounded-xl border border-ivory-200 max-w-3xl mx-auto text-center shadow-sm">
-          <h4 className="text-forest-950 font-serif mb-2 text-sm font-semibold">Transparency Promise</h4>
-          <p className="text-espresso-500 text-[11px] opacity-80 leading-relaxed font-light">
-            * Houseboat pricing in Alleppey fluctuates based on seasonality, peak holidays, and specific boat availability.
-            We do not display static price lists to avoid misleading our guests. All estimates above are starting rates.
-            The final confirmed price for your specific dates will be shared directly via WhatsApp before you pay.
-          </p>
-        </div>
       </div>
+
+      <div className="w-full lg:w-[55%] relative h-[50vh] lg:h-auto overflow-hidden gsap-fade-left">
+        {PRICING_PACKAGES.map((pkg, idx) => (
+          <div
+            key={pkg.title}
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out ${activeIdx === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+              }`}
+            style={{
+              backgroundImage: `url(${pkg.title.toLowerCase().includes('day') ? '/packages/budget.jpg' :
+                  pkg.title.toLowerCase().includes('luxury') ? '/packages/luxury.webp' :
+                    '/packages/premium.webp'
+                })`
+            }}
+          >
+            <div className="absolute inset-0 bg-black/20" />
+          </div>
+        ))}
+      </div>
+
     </section>
   );
 };

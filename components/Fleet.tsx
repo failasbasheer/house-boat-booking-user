@@ -1,97 +1,142 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check, ArrowRight, Ship } from 'lucide-react';
-import { HOUSEBOAT_TIERS, WHATSAPP_NUMBER, WHATSAPP_MESSAGE } from '../constants';
+import React, { useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image'; // PERFORMANCE
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowRight, Star, Users, Clock } from 'lucide-react';
+import { FLEET_CATEGORIES } from '@/constants';
+import { Category } from '@/types';
 
-export const Fleet: React.FC = () => {
+// Register GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+export const Fleet = ({ categories = [] }: { categories?: Category[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  // Using passed categories or fallback to empty (parent should provide data)
+
+
   return (
-    <section id="fleet" className="py-8 bg-white relative border-t border-ivory-200">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-8">
-          <span className="text-bronze-600 uppercase tracking-widest text-xs font-bold mb-3 block">
-            Choose Your Experience
+    <div ref={containerRef} id="fleet" className="bg-white min-h-screen text-[#1C1917] font-sans relative">
+
+      {/* --- MAIN LISTING VIEW --- */}
+      <FleetGrid tiers={categories} />
+
+      {/* --- VIEW ALL BUTTON --- */}
+      <div className="flex justify-center pb-12">
+        <a
+          href="/fleet"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-[#1C1917] text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-black transition-colors"
+        >
+          View Full Fleet
+          <ArrowRight className="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
+// COMPONENT 1: THE FLEET GRID (The List View)
+// ============================================================================
+const FleetGrid = ({ tiers }: { tiers: any[] }) => {
+  const gridRef = useRef(null);
+
+  useGSAP(() => {
+    if (tiers.length === 0) return;
+
+    // Staggered Entry for Cards
+    gsap.fromTo(".fleet-card",
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: "top 80%",
+        }
+      }
+    );
+  }, { scope: gridRef, dependencies: [tiers] });
+
+  return (
+    <section ref={gridRef} className="py-12 lg:py-16 px-6 lg:px-12 max-w-[96rem] mx-auto">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20 border-b border-[#E7E5E4] pb-10">
+        <div className="max-w-3xl">
+          <span className="text-[#A8A29E] uppercase tracking-[0.2em] text-xs font-bold mb-4 block">
+            Our Collection
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-forest-950 mb-4">
-            Choose Your Perfect<br className="hidden md:block" /> Houseboat Experience
-          </h2>
-          <p className="text-espresso-500 max-w-xl mx-auto font-light text-sm md:text-base">
-            Real-time availability with instant booking confirmation. All houseboats personally verified for quality.
+          <h1 className="text-5xl md:text-7xl font-serif text-[#1C1917] leading-[0.9] tracking-tight">
+            The Royal Fleet
+          </h1>
+        </div>
+        <div className="hidden md:block max-w-sm text-right">
+          <p className="text-[#57534E] font-light text-sm leading-relaxed">
+            Select a houseboat to view full details, itinerary, and interiors.
           </p>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {HOUSEBOAT_TIERS.map((tier, index) => (
-            <motion.div
-              key={tier.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col h-full border border-ivory-200 hover:border-bronze-200"
-            >
-              {/* Image Area */}
-              <div className="h-48 md:h-60 overflow-hidden relative">
-                <img
-                  src={tier.imagePlaceholder}
-                  alt={tier.name}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80';
-                  }}
-                />
+      {/* Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-3 gap-y-6 md:gap-x-4 md:gap-y-10">
+        {tiers.map((tier, index) => (
+          <Link
+            key={tier.id}
+            href={`/categories/${tier.slug}`}
+            className={`fleet-card group cursor-pointer block ${index >= 4 ? 'hidden lg:block' : ''}`}
+          >
+            {/* Image */}
+            <div className="relative aspect-[4/5] overflow-hidden bg-[#E7E5E4] mb-3">
+              <Image
+                src={tier.heroImage}
+                alt={tier.title}
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
 
-                {/* Available Badge */}
-                {tier.availableCount && (
-                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] md:text-xs font-medium flex items-center gap-1.5 border border-white/10">
-                    <Ship className="w-3 h-3 md:w-3.5 md:h-3.5 text-green-400" />
-                    {tier.availableCount} available
-                  </div>
-                )}
+              {/* Hover Button */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden lg:flex">
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-2xl transform scale-75 group-hover:scale-100 transition-transform duration-500">
+                  <ArrowRight className="w-5 h-5 text-[#1C1917]" />
+                </div>
+              </div>
 
-                <div className="absolute bottom-4 left-4">
-                  <span className="px-3 py-1 bg-white/95 backdrop-blur-md text-forest-900 text-[10px] md:text-xs font-bold rounded-full border border-ivory-200 uppercase tracking-wider shadow-sm">
+              {/* Tag */}
+              {tier.tagline && (
+                <div className="absolute top-2 left-2">
+                  <span className="px-2 py-1 bg-white/90 backdrop-blur-md text-[#1C1917] text-[8px] font-bold uppercase tracking-widest">
                     {tier.tagline}
                   </span>
                 </div>
-              </div>
+              )}
+            </div>
 
-              {/* Content Area */}
-              <div className="p-5 flex flex-col flex-grow">
-                <div className="mb-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-xl md:text-2xl font-serif text-forest-950 leading-tight">{tier.name}</h3>
-                  </div>
-                  <p className="text-espresso-800/80 text-sm leading-relaxed mb-4 font-normal min-h-[3rem]">
-                    {tier.description}
-                  </p>
+            {/* Text */}
+            <div className="flex flex-col gap-1">
+              <h3 className="text-sm md:text-base lg:text-lg font-serif text-[#1C1917] group-hover:text-[#78716C] transition-colors leading-tight truncate">
+                {tier.title}
+              </h3>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-[10px] md:text-xs text-[#A8A29E] font-medium">
+                  <Users className="w-3 h-3" />
+                  <span>{tier.guestCapacity}</span>
                 </div>
-
-                <div className="space-y-2 mb-6 flex-grow">
-                  {tier.features.slice(0, 3).map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <div className="mt-0.5 min-w-[14px]">
-                        <Check className="w-3.5 h-3.5 md:w-4 md:h-4 text-bronze-600" />
-                      </div>
-                      <span className="text-espresso-900 text-xs md:text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-4 border-t border-ivory-200 mt-auto">
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`${WHATSAPP_MESSAGE} Specifically interested in ${tier.name}.`)}`}
-                    className="flex items-center justify-between w-full py-3 px-5 rounded-xl bg-forest-50 text-forest-900 font-semibold border border-forest-100 hover:bg-forest-900 hover:text-white hover:border-forest-900 transition-all duration-300 group/btn"
-                  >
-                    <span className="text-sm">Explore option</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                  </a>
+                <div className="flex items-center gap-1 bg-[#F5F5F4] px-1.5 py-0.5 rounded">
+                  <Star className="w-2.5 h-2.5 fill-[#1C1917]" />
+                  <span className="text-[9px] font-bold">{tier.stats.rating}</span>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
