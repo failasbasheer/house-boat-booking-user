@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import Image from 'next/image'; // PERFORMANCE: Use next/image
 import { Boat } from '@/types';
 import { ArrowRight, Star } from 'lucide-react';
@@ -17,6 +17,9 @@ const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
     const displayPrice = (boat as any).displayPrice ||
         `₹${(boat.pricePerNight || 0).toLocaleString()}`;
 
+    // Fallback image state
+    const [imgSrc, setImgSrc] = useState(getImageUrl(boat.images.hero, 'houseboats'));
+
     return (
         <div
             className="group bg-white rounded-xl overflow-hidden border border-ivory-200 hover:border-bronze-200 hover:shadow-soft transition-all duration-500 hover:-translate-y-1 cursor-pointer"
@@ -24,12 +27,13 @@ const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
         >
             <div className="relative aspect-[3/2] md:aspect-[4/5] overflow-hidden bg-ivory-100">
                 <Image
-                    src={getImageUrl(boat.images.hero, 'houseboats')}
+                    src={imgSrc}
                     alt={boat.name}
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     priority={priority}
+                    onError={() => setImgSrc('/images/placeholder.jpg')}
                 />
 
                 {boat.featured && (

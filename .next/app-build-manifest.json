@@ -23,16 +23,7 @@
       "static/chunks/65-825beeb8e5378d92.js",
       "static/chunks/495-5e0170115f806d9d.js",
       "static/chunks/164-1fb0580455585f1f.js",
-      "static/chunks/app/all-boats/page-506682937b3466a1.js"
-    ],
-    "/fleet/page": [
-      "static/chunks/webpack-afbb1cad2c8e97b1.js",
-      "static/chunks/fd9d1056-019f10e264233b8e.js",
-      "static/chunks/69-498b35ad5dbd026b.js",
-      "static/chunks/main-app-68dd1f5529378b76.js",
-      "static/chunks/65-825beeb8e5378d92.js",
-      "static/chunks/164-1fb0580455585f1f.js",
-      "static/chunks/app/fleet/page-332754815bfa2fdc.js"
+      "static/chunks/app/all-boats/page-0fb884f28af807b1.js"
     ],
     "/page": [
       "static/chunks/webpack-afbb1cad2c8e97b1.js",
@@ -46,6 +37,15 @@
       "static/chunks/164-1fb0580455585f1f.js",
       "static/chunks/app/page-706aaad71a0be070.js"
     ],
+    "/fleet/page": [
+      "static/chunks/webpack-afbb1cad2c8e97b1.js",
+      "static/chunks/fd9d1056-019f10e264233b8e.js",
+      "static/chunks/69-498b35ad5dbd026b.js",
+      "static/chunks/main-app-68dd1f5529378b76.js",
+      "static/chunks/65-825beeb8e5378d92.js",
+      "static/chunks/164-1fb0580455585f1f.js",
+      "static/chunks/app/fleet/page-332754815bfa2fdc.js"
+    ],
     "/categories/[slug]/page": [
       "static/chunks/webpack-afbb1cad2c8e97b1.js",
       "static/chunks/fd9d1056-019f10e264233b8e.js",
@@ -53,7 +53,7 @@
       "static/chunks/main-app-68dd1f5529378b76.js",
       "static/chunks/65-825beeb8e5378d92.js",
       "static/chunks/164-1fb0580455585f1f.js",
-      "static/chunks/app/categories/[slug]/page-8e35b800159648d6.js"
+      "static/chunks/app/categories/[slug]/page-5e611af05ff7fc44.js"
     ]
   }
 }

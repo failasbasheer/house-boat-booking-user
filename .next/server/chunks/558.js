@@ -3,7 +3,7 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */let n=(0,r(9224).Z)("ArrowRight",[["path",{d:"M5 12h14",key:"1ays0h"}],["path",{d:"m12 5 7 7-7 7",key:"xquz4c"}]])},5545:(e,t,r)=>{r.d(t,{Z:()=>n});/**
+ */let n=(0,r(9224).Z)("ArrowRight",[["path",{d:"M5 12h14",key:"1ays0h"}],["path",{d:"m12 5 7 7-7 7",key:"xquz4c"}]])},7189:(e,t,r)=>{r.d(t,{Z:()=>n});/**
  * @license lucide-react v0.344.0 - ISC
  *
  * This source code is licensed under the ISC license.
