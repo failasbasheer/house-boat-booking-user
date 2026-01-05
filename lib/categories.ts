@@ -1,8 +1,7 @@
 import connectDB from './db';
 import CategoryModel, { ICategory } from '@/models/Category';
 import HouseboatModel from '@/models/Houseboat';
-import { Category, Testimonial } from '@/types';
-import { notFound } from 'next/navigation';
+import { Category } from '@/types';
 
 // Helper to map DB document to Frontend Interface
 const mapDBCategoryToFrontend = (doc: ICategory, boatCount: number = 0): Category => {
