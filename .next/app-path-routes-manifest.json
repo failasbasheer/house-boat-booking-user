@@ -1,1 +1,1 @@
-{"/_not-found":"/_not-found","/api/categories/route":"/api/categories","/all-boats/page":"/all-boats","/api/categories/[slug]/route":"/api/categories/[slug]","/fleet/page":"/fleet","/page":"/","/categories/[slug]/page":"/categories/[slug]","/api/houseboats/route":"/api/houseboats"}
+{"/_not-found":"/_not-found","/api/categories/[slug]/route":"/api/categories/[slug]","/all-boats/page":"/all-boats","/api/categories/route":"/api/categories","/fleet/page":"/fleet","/page":"/","/api/houseboats/route":"/api/houseboats","/categories/[slug]/page":"/categories/[slug]"}

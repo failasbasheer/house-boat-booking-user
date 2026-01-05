@@ -1,1 +1,1 @@
-{"version":1,"functions":{"/api/houseboats":{},"/categories/[slug]":{}}}
+{"version":1,"functions":{"/categories/[slug]":{},"/api/houseboats":{}}}
