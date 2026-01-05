@@ -61,7 +61,7 @@ function CategoryCard({ category, index }: { category: Category, index: number }
                 {/* Card Image - 3:2 on mobile for compact view, 4:5 on desktop */}
                 <div className="relative aspect-[3/2] md:aspect-[4/5] overflow-hidden bg-gray-200 mb-3 md:mb-6 rounded-xl shadow-sm md:shadow-lg">
                     <Image
-                        src={imgError ? `/packages/${category.slug}.webp` : category.heroImage}
+                        src={imgError ? `/images/hero.jpg` : category.heroImage}
                         alt={category.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

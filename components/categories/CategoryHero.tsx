@@ -21,7 +21,7 @@ export default function CategoryHero({ category }: { category: Category }) {
                             alt={category.title}
                             className="w-full h-full object-cover"
                             onError={(e) => {
-                                e.currentTarget.src = `/packages/${category.slug}.webp`;
+                                e.currentTarget.src = `/images/hero.jpg`;
                             }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-forest-950/30 via-transparent to-forest-950/90 mix-blend-multiply" />

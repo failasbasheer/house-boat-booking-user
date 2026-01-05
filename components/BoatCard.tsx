@@ -33,7 +33,7 @@ const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     priority={priority}
-                    onError={() => setImgSrc('/images/placeholder.jpg')}
+                    onError={() => setImgSrc('/images/hero.jpg')}
                 />
 
                 {boat.featured && (
