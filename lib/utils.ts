@@ -1,21 +1,28 @@
 export const getImageUrl = (url: string, subfolder: string = 'houseboats') => {
     if (!url) return '';
+
+    // 1. Absolute URLs - return as is
     if (url.startsWith('http') || url.startsWith('https')) return url;
-    if (url.startsWith('/')) return url;
+
+    // 2. Frontend Assets - whitelist specific folders that exist in public/
+    // These should be served relative to the frontend domain
+    if (url.startsWith('/packages') || url.startsWith('/collection') || url.startsWith('/images') || url.startsWith('/logo')) {
+        return url;
+    }
 
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
 
-    // If url already has the specific subfolder path, don't add it again
-    if (url.includes(`/uploads/${subfolder}/`)) {
-        return `${backendUrl}${url.startsWith('/') ? '' : '/'}${url}`;
+    // 3. Backend Uploads - if it contains /uploads/, it belongs to the backend
+    if (url.includes('/uploads/')) {
+        // Ensure we don't double-slash or double-prepend if the DB value is messy
+        // If it starts with /, strip it to append clean to backendUrl (which might have no trailing slash)
+        // actually backendUrl usually doesn't have trailing slash.
+        const cleanPath = url.startsWith('/') ? url : `/${url}`;
+        return `${backendUrl}${cleanPath}`;
     }
 
-    // Capture case where it might just start with uploads/ but not the specific subfolder (less likely but possible)
-    if (url.startsWith('uploads/') || url.startsWith('/uploads/')) {
-        return `${backendUrl}${url.startsWith('/') ? '' : '/'}${url}`;
-    }
-
-    // Clean up the URL construction
+    // 4. Filename only - construct the full backend path
+    // If it's just "image.jpg", assume it goes into the specified subfolder
     return `${backendUrl}/uploads/${subfolder}/${url}`;
 };
 

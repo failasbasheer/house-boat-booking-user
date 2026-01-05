@@ -23,7 +23,7 @@
       "static/chunks/65-825beeb8e5378d92.js",
       "static/chunks/495-5e0170115f806d9d.js",
       "static/chunks/164-1fb0580455585f1f.js",
-      "static/chunks/app/all-boats/page-0fb884f28af807b1.js"
+      "static/chunks/app/all-boats/page-ba5a88f4ccafdc4e.js"
     ],
     "/page": [
       "static/chunks/webpack-afbb1cad2c8e97b1.js",
@@ -43,8 +43,9 @@
       "static/chunks/69-498b35ad5dbd026b.js",
       "static/chunks/main-app-68dd1f5529378b76.js",
       "static/chunks/65-825beeb8e5378d92.js",
+      "static/chunks/495-5e0170115f806d9d.js",
       "static/chunks/164-1fb0580455585f1f.js",
-      "static/chunks/app/fleet/page-332754815bfa2fdc.js"
+      "static/chunks/app/fleet/page-fb98b00f783b3dd7.js"
     ],
     "/categories/[slug]/page": [
       "static/chunks/webpack-afbb1cad2c8e97b1.js",
