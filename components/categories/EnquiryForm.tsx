@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Category } from '@/types';
 import { Calendar, Users, Phone, ArrowRight, ShieldCheck } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/WhatsAppIcon';
+import { WHATSAPP_NUMBER } from '@/constants';
 
 export default function EnquiryForm({ category }: { category: Category }) {
     const [formData, setFormData] = useState({ name: '', date: '', guests: '2' });
@@ -13,7 +14,7 @@ export default function EnquiryForm({ category }: { category: Category }) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const message = encodeURIComponent(`${category.whatsappTemplate}\n\nName: ${formData.name}\nDate: ${formData.date}\nGuests: ${formData.guests}\nCategory: ${category.title}`);
-        window.open(`https://wa.me/917907689772?text=${message}`, '_blank');
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
     };
 
 

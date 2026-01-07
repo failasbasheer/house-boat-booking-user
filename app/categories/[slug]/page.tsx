@@ -9,6 +9,7 @@ import { Footer } from '@/components/Footer';
 import * as LucideIcons from 'lucide-react';
 import { Category } from '@/types';
 import { WhatsAppIcon } from '@/components/WhatsAppIcon';
+import { WHATSAPP_NUMBER } from '@/constants';
 
 export async function generateStaticParams() {
     const categories = await getAllCategories();
@@ -67,9 +68,9 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                                     </h3>
                                 </div>
 
-                                {category.slug === 'honeymoon' ? (
+                                {category.slug === 'honeymoon' || category.slug === 'kerala-package' ? (
                                     <a
-                                        href={`https://wa.me/${category.whatsappTemplate ? '917907689772' : '917907689772'}?text=${encodeURIComponent(category.whatsappTemplate)}`}
+                                        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(category.whatsappTemplate)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group/btn inline-flex items-center gap-4 text-xs font-display font-bold uppercase tracking-[0.2em] text-white mt-2"

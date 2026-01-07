@@ -107,6 +107,27 @@ export const CATEGORIES: Category[] = [
         testimonials: [],
         whatsappTemplate: 'Hi, I am interested in Shared Houseboat options.',
     },
+    {
+        id: 'cat-kerala-package',
+        slug: 'kerala-package',
+        title: 'Kerala Holiday Package',
+        tagline: 'Signature Experience',
+        description: 'A curated 3-day voyage through the untapped backwaters. Experience the true essence of Kerala with this comprehensive package.',
+        shortDescription: '3 Days / 4 Nights. Includes accommodation, meals, and sightseeing.',
+        guestCapacity: '2-6 Guests',
+        amenities: [
+            { icon: 'map', title: 'Village Visits', description: 'Guided tours' },
+            { icon: 'sun', title: '3 Days / 4 Nights', description: 'Extended Stay' },
+            { icon: 'coffee', title: 'All Meals Included', description: 'Kerala Delicacies' },
+        ],
+        stats: {
+            totalBoats: 0, // Package, not boat count
+            rating: 4.9,
+        },
+        heroImage: '/kerala-tourism.jpg', // Using the image from promo section
+        testimonials: [],
+        whatsappTemplate: 'Hi, I am interested in the 3-day Kerala Holiday Package.',
+    },
 ];
 
 export const BOATS: Boat[] = [

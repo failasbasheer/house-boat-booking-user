@@ -1,8 +1,8 @@
 import { HouseboatTier, PricingPlan, Testimonial, FAQCategory } from './types';
 
-export const WHATSAPP_NUMBER = "919876543210";
+export const WHATSAPP_NUMBER = "916282118829";
 export const WHATSAPP_MESSAGE = "Hi, I'm interested in checking availability for a houseboat experience.";
-export const CONTACT_PHONE = "+91 98765 43210";
+export const CONTACT_PHONE = "+91 62821 18829";
 export const CONTACT_EMAIL = "hello@alleppeyhouseboats.com";
 
 const PREMIUM_TIER: HouseboatTier = {
