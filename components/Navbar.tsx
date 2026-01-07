@@ -31,14 +31,16 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
 
   // Determine base styles
   // Determine base styles
-  let bgClass = 'bg-white shadow-sm md:shadow-none md:bg-transparent py-3 md:py-6 border-b border-stone-100 md:border-none'; // Mobile: White + Border, Desktop: Transparent
+  let bgClass = '';
 
   if (mobileMenuOpen) {
     bgClass = 'bg-white py-3 md:py-4 shadow-none';
   } else if (isPastHero) {
     bgClass = 'bg-white md:glass-premium py-3 md:py-4 shadow-sm';
   } else if (hasScrolled) {
-    bgClass = 'bg-white md:bg-white/10 md:backdrop-blur-sm py-3 md:py-4 shadow-sm md:shadow-none md:border-b md:border-white/5';
+    bgClass = 'bg-white/10 backdrop-blur-md md:bg-white/10 md:backdrop-blur-sm py-3 md:py-4 shadow-sm md:shadow-none border-b border-white/10 md:border-white/5';
+  } else {
+    bgClass = 'bg-transparent py-3 md:py-6 border-none';
   }
 
   const navClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${bgClass}`;
@@ -46,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
   // Text color: Always dark on mobile (since bg is white). On desktop, depends on state.
   const textColorClass = isPastHero || mobileMenuOpen
     ? 'text-forest-950'
-    : 'text-forest-950 md:text-white';
+    : 'text-white';
 
   const buttonClass = isPastHero || mobileMenuOpen
     ? 'bg-forest-900 text-white hover:bg-forest-800'

@@ -48,7 +48,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                             <div
                                 className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay group-hover:scale-105 transition-transform duration-1000 grayscale"
                                 style={{
-                                    backgroundImage: `url('${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'}/collection/IMG-20250617-WA0014.jpg')`
+                                    backgroundImage: `url('/collection/IMG-20250617-WA0019 (3).jpg')`
                                 }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-r from-forest-950/95 via-forest-950/80 to-transparent" />
@@ -67,7 +67,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                                     </h3>
                                 </div>
 
-                                {category.slug === 'romantic' ? (
+                                {category.slug === 'honeymoon' ? (
                                     <a
                                         href={`https://wa.me/${category.whatsappTemplate ? '917907689772' : '917907689772'}?text=${encodeURIComponent(category.whatsappTemplate)}`}
                                         target="_blank"
