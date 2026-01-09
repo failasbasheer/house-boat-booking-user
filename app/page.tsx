@@ -11,15 +11,20 @@ import { Testimonials } from '@/components/Testimonials';
 import { Gallery } from '@/components/Gallery';
 import { FAQ } from '@/components/FrequencyAskQuestions';
 import { Footer } from '@/components/Footer';
-import { PricingSplitFocus as Pricing } from '@/components/Pricing';
-
+import PromoModal from '@/components/modals/PromoModal';
+import PackageModel from '@/models/Package';
+import connectToDatabase from '@/lib/db';
 import { getAllCategories } from '@/lib/categories';
 
 export default async function Home() {
     const categories = await getAllCategories();
 
+    await connectToDatabase();
+    const promoPackage = await PackageModel.findOne({ slug: 'kerala-package' }).lean();
+
     return (
         <div className="min-h-screen bg-white text-espresso-900 font-sans">
+            <PromoModal />
             <Navbar />
 
             <main>
@@ -35,7 +40,7 @@ export default async function Home() {
                 <Fleet categories={categories.slice(0, 5)} />
 
                 {/* Special Promotional Section */}
-                <KeralaPromoSection />
+                <KeralaPromoSection data={JSON.parse(JSON.stringify(promoPackage))} />
 
                 {/* Trust before visuals */}
                 <Testimonials />

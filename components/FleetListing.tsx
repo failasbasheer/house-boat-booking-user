@@ -25,7 +25,7 @@ export default function FleetListing({ categories }: { categories: Category[] })
                         animate={{ opacity: 1, y: 0 }}
                         className="text-3xl md:text-6xl font-serif text-bronze-400 mb-2 md:mb-4"
                     >
-                        Our Collections
+                        Our Houseboats
                     </motion.h1>
                     <p className="text-white/80 text-sm md:text-lg font-light max-w-xl mx-auto">
                         Choose your perfect backwater experience from our curated categories.
@@ -106,6 +106,11 @@ function CategoryCard({ category, index }: { category: Category, index: number }
                             <Users className="w-3.5 h-3.5" />
                             <span>{category.guestCapacity}</span>
                         </div>
+                        {category.priceDisplay && (
+                            <div className="text-sm font-serif text-bronze-600">
+                                {category.priceDisplay}
+                            </div>
+                        )}
                         {/* Duration removed */}
                     </div>
                 </div>

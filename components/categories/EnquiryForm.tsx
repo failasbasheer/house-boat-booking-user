@@ -9,12 +9,35 @@ import { WhatsAppIcon } from '@/components/WhatsAppIcon';
 import { WHATSAPP_NUMBER } from '@/constants';
 
 export default function EnquiryForm({ category }: { category: Category }) {
-    const [formData, setFormData] = useState({ name: '', date: '', guests: '2' });
+    const [formData, setFormData] = useState({ name: '', date: '', guests: '2', phone: '' });
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const message = encodeURIComponent(`${category.whatsappTemplate}\n\nName: ${formData.name}\nDate: ${formData.date}\nGuests: ${formData.guests}\nCategory: ${category.title}`);
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+        setLoading(true);
+
+        // 1. Prepare WhatsApp URL data (do this first to ensure we have it)
+        const message = encodeURIComponent(`${category.whatsappTemplate}\n\nName: ${formData.name}\nPhone: ${formData.phone}\nDate: ${formData.date}\nGuests: ${formData.guests}\nCategory: ${category.title}`);
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+
+        try {
+            // 2. Persist Data to Backend
+            await fetch('/api/enquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    category: category.title
+                }),
+            });
+        } catch (error) {
+            console.error('Failed to save enquiry:', error);
+            // Proceed to WhatsApp even if backend save fails
+        } finally {
+            setLoading(false);
+            // 3. Redirect to WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
     };
 
 
@@ -68,25 +91,44 @@ export default function EnquiryForm({ category }: { category: Category }) {
                         </div>
                     </div>
 
-                    {/* Personal Details */}
+                    {/* Personal Details - Name */}
                     <div className="group">
                         <label className="block font-display text-[9px] uppercase tracking-[0.2em] text-white/60 mb-1 group-focus-within:text-bronze-400 transition-colors">
                             Guest Name
                         </label>
                         <input
                             type="text"
+                            required
                             className="w-full bg-transparent border-b border-white/20 pb-1 text-base font-light text-white outline-none focus:border-bronze-500/50 transition-colors placeholder:text-white/40"
                             placeholder="Full Name"
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         />
                     </div>
 
+                    {/* Personal Details - Phone */}
+                    <div className="group">
+                        <label className="block font-display text-[9px] uppercase tracking-[0.2em] text-white/60 mb-1 group-focus-within:text-bronze-400 transition-colors">
+                            Phone Number
+                        </label>
+                        <div className="relative border-b border-white/20 group-focus-within:border-bronze-500/50 transition-colors pb-1">
+                            <input
+                                type="tel"
+                                required
+                                className="w-full bg-transparent text-base font-light text-white outline-none placeholder:text-white/40"
+                                placeholder=""
+                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            />
+                            <Phone className="absolute right-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/40 pointer-events-none" />
+                        </div>
+                    </div>
+
                     <button
                         type="submit"
-                        className="w-full py-4 bg-white text-forest-950 hover:bg-ivory-100 transition-colors text-xs font-display font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-3 mt-4"
+                        disabled={loading}
+                        className="w-full py-4 bg-bronze-500 text-white hover:bg-bronze-600 disabled:opacity-70 disabled:cursor-not-allowed transition-colors text-xs font-display font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-3 mt-4"
                     >
-                        Enquire
-                        <WhatsAppIcon className="w-4 h-4 mb-0.5" />
+                        {loading ? 'Processing...' : 'Enquire'}
+                        {!loading && <WhatsAppIcon className="w-4 h-4 mb-0.5" />}
                     </button>
 
                     <div className="flex justify-center gap-2 text-[9px] text-white/20 uppercase tracking-widest pt-1">

@@ -5,12 +5,27 @@ import { ArrowUpRight } from 'lucide-react';
 import { PRICING_PACKAGES, WHATSAPP_NUMBER } from '../constants';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
+import QuickEnquiryModal from './modals/QuickEnquiryModal';
+
 export const PricingSplitFocus: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState('');
   const containerRef = useScrollAnimation();
+
+  const handleEnquiry = (pkgTitle: string) => {
+    setSelectedPackage(pkgTitle);
+    setIsModalOpen(true);
+  };
 
   return (
     <section ref={containerRef} id="pricing" className="bg-white min-h-screen flex flex-col lg:flex-row">
+      <QuickEnquiryModal
+        isOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(false)}
+        customMessage={`Hi, I'm interested in the ${selectedPackage} package.`}
+        source={`Pricing - ${selectedPackage}`}
+      />
 
       <div className="w-full lg:w-[45%] p-8 lg:p-20 flex flex-col justify-center bg-white border-r border-stone-200 z-10 gsap-fade-right">
         <div className="mb-12">
@@ -39,9 +54,12 @@ export const PricingSplitFocus: React.FC = () => {
               <div className={`overflow-hidden transition-all duration-300 ${activeIdx === idx ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
                 <p className="text-sm font-light leading-relaxed opacity-80 mb-4">{pkg.description}</p>
                 <div className="flex items-center justify-between pt-4 border-t border-white/20">
-                  <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="text-xs font-bold uppercase tracking-widest hover:text-amber-300 transition-colors">
+                  <button
+                    onClick={() => handleEnquiry(pkg.title)}
+                    className="text-xs font-bold uppercase tracking-widest hover:text-amber-300 transition-colors"
+                  >
                     Enquire Now
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -57,8 +75,8 @@ export const PricingSplitFocus: React.FC = () => {
               }`}
             style={{
               backgroundImage: `url(${pkg.title.toLowerCase().includes('day') ? '/packages/budget.jpg' :
-                  pkg.title.toLowerCase().includes('luxury') ? '/packages/luxury.webp' :
-                    '/packages/premium.webp'
+                pkg.title.toLowerCase().includes('luxury') ? '/packages/luxury.webp' :
+                  '/packages/premium.webp'
                 })`
             }}
           >

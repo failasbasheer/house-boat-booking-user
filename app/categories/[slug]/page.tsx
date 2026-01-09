@@ -10,6 +10,7 @@ import * as LucideIcons from 'lucide-react';
 import { Category } from '@/types';
 import { WhatsAppIcon } from '@/components/WhatsAppIcon';
 import { WHATSAPP_NUMBER } from '@/constants';
+import EnquireNowButton from '@/components/categories/EnquireNowButton';
 
 export async function generateStaticParams() {
     const categories = await getAllCategories();
@@ -59,7 +60,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-px bg-bronze-500" />
                                         <span className="font-display text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-bronze-500">
-                                            The Collection
+                                            The Fleet
                                         </span>
                                     </div>
                                     <h3 className="text-2xl md:text-5xl font-serif text-white leading-none">
@@ -69,22 +70,14 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                                 </div>
 
                                 {category.slug === 'honeymoon' || category.slug === 'kerala-package' ? (
-                                    <a
-                                        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(category.whatsappTemplate)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group/btn inline-flex items-center gap-4 text-xs font-display font-bold uppercase tracking-[0.2em] text-white mt-2"
-                                    >
-                                        <span>Enquire Now</span>
-                                        <WhatsAppIcon className="w-4 h-4 text-bronze-500 group-hover/btn:scale-110 transition-transform" />
-                                    </a>
+                                    <EnquireNowButton category={category} />
                                 ) : (
                                     <a
                                         href={`/all-boats?category=${category.slug}`}
-                                        className="group/btn inline-flex items-center gap-4 text-xs font-display font-bold uppercase tracking-[0.2em] text-white mt-2"
+                                        className="group/btn inline-flex items-center gap-4 text-sm font-display font-bold uppercase tracking-[0.15em] text-white bg-bronze-500 hover:bg-bronze-400 px-8 py-4 mt-6 rounded-none transition-all duration-300 shadow-lg hover:shadow-bronze-500/20"
                                     >
                                         <span>View Houseboats</span>
-                                        <LucideIcons.ArrowRight className="w-4 h-4 text-bronze-500 group-hover/btn:translate-x-2 transition-transform" />
+                                        <LucideIcons.ArrowRight className="w-5 h-5 text-white group-hover/btn:translate-x-2 transition-transform" />
                                     </a>
                                 )}
                             </div>

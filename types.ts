@@ -58,6 +58,7 @@ export interface Category {
   tagline: string;
   description: string;
   shortDescription: string;
+  priceDisplay: string; // e.g. "₹8,500 Onwards"
   guestCapacity: string;
   amenities: {
     icon: string;
@@ -79,6 +80,7 @@ export interface Boat {
   slug: string;
   category_id?: string; // Mapped from ObjectId
   categorySlug?: string; // Optional, computed/populated
+  priceDisplay?: string; // Optional override
 
   // Status & Core Specs
   status: 'active' | 'maintenance' | 'decommissioned';

@@ -6,6 +6,7 @@ import { WHATSAPP_NUMBER } from '../constants';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import QuickEnquiryModal from './modals/QuickEnquiryModal';
 
 const WaveSeparator = () => (
     <div className="absolute bottom-0 left-0 w-full z-20 pointer-events-none translate-y-1">
@@ -74,15 +75,25 @@ export const Hero: React.FC = () => {
 
     }, { scope: containerRef });
 
-    const handleBooking = async (e: React.FormEvent) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const getBookingMessage = () => {
+        return `Hi, I'm checking availability for a houseboat in Alleppey.\n\n📝 *Trip Details*\n📅 Date: ${form.date || 'Flexible'}\n👥 Guests: ${form.guests}\n🛥️ Preference: ${form.type}\n⏳ Duration: ${form.duration}\n\nPlease verify availability.`;
+    };
+
+    const handleBooking = (e: React.FormEvent) => {
         e.preventDefault();
-        const text = `Hi, I'm checking availability for a houseboat in Alleppey.\n\n📝 *Trip Details*\n📅 Date: ${form.date || 'Flexible'}\n👥 Guests: ${form.guests}\n🛥️ Preference: ${form.type}\n⏳ Duration: ${form.duration}\n\nPlease verify availability.`;
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank');
+        setIsModalOpen(true);
     };
 
     return (
         <section ref={containerRef} className="relative min-h-[115vh] w-full flex flex-col pt-0 pb-0 overflow-hidden">
+            <QuickEnquiryModal
+                isOpen={isModalOpen}
+                closeModal={() => setIsModalOpen(false)}
+                customMessage={getBookingMessage()}
+                source="Hero Availability Check"
+            />
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <img
                     ref={bgImageRef}

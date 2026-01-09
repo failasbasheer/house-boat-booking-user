@@ -20,6 +20,7 @@ const houseboatSchema = new mongoose.Schema({
 
     // Pricing Override (Optional - defaults to Category price)
     price_override: { type: Number },
+    priceDisplay: { type: String },
     shared_package_availability: { type: Boolean, default: false },
 
     // Visuals (Keep existing structure but simplify validation if needed)

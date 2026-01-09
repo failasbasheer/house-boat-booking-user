@@ -1,13 +1,25 @@
+'use client';
+
 import React from 'react';
 import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE } from '../constants';
 import { Anchor, MapPin, ShieldCheck, Clock } from 'lucide-react';
 
 import { WhatsAppIcon } from './WhatsAppIcon';
+import QuickEnquiryModal from './modals/QuickEnquiryModal';
+import { useState } from 'react';
 
 
 export const Footer: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <footer className="bg-forest-950 pt-6 md:pt-10 pb-4 md:pb-6 relative overflow-hidden">
+      <QuickEnquiryModal
+        isOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(false)}
+        source="Footer"
+        customMessage={WHATSAPP_MESSAGE}
+      />
       {/* Decorative large text background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[20vw] font-serif text-white/[0.03] pointer-events-none whitespace-nowrap leading-none select-none">
         Alleppey
@@ -21,15 +33,13 @@ export const Footer: React.FC = () => {
           We handle everything personally via WhatsApp to ensure your requirements are met with precision.
         </p>
 
-        <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => setIsModalOpen(true)}
           className="inline-flex items-center gap-2 md:gap-3 bg-white text-forest-900 hover:bg-ivory-100 px-6 py-3 md:px-10 md:py-4 rounded-xl text-base md:text-lg font-bold transition-all mb-8 md:mb-16 shadow-glow hover:scale-105"
         >
           <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6" />
           <span className="text-sm md:text-lg">Start Planning on WhatsApp</span>
-        </a>
+        </button>
 
         <div className="grid md:grid-cols-3 gap-4 md:gap-8 text-ivory-300 text-xs md:text-sm mb-8 md:mb-16 border-t border-b border-white/10 py-4 md:py-8">
           <div className="flex flex-col items-center gap-1 md:gap-2">

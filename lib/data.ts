@@ -1,14 +1,36 @@
 
 import { Category, Boat } from '@/types';
 
+export interface Promotion {
+    id: string;
+    title: string;
+    description: string;
+    image?: string;
+    code?: string;
+    validUntil?: string;
+    isActive: boolean;
+}
+
+export const PROMOTIONS: Promotion[] = [
+    {
+        id: 'promo-early-bird',
+        title: 'Early Bird Alert!',
+        description: 'Book 30 days in advance and get flat 15% OFF on all Premium & Luxury fleets.',
+        image: '/images/sunset.jpg', // Using existing image
+        code: 'EARLY15',
+        isActive: true
+    }
+];
+
 export const CATEGORIES: Category[] = [
     {
         id: 'cat-deluxe',
         slug: 'deluxe',
-        title: 'Deluxe Collection',
+        title: 'Deluxe Houseboats',
         tagline: 'The Essential Backwater Experience',
         description: 'Perfect for first-time visitors offering comfortable amenities and authentic Kerala cuisine.',
         shortDescription: 'Comfortable air-conditioned bedrooms with classic wooden interiors.',
+        priceDisplay: '₹8,500 Onwards',
         guestCapacity: '2-6 Guests',
         amenities: [
             { icon: 'wind', title: 'AC Bedroom', description: '9PM - 6AM' },
@@ -26,10 +48,11 @@ export const CATEGORIES: Category[] = [
     {
         id: 'cat-premium',
         slug: 'premium',
-        title: 'Premium Collection',
+        title: 'Premium Houseboats',
         tagline: 'Elevated Comfort & Style',
         description: 'Added luxuries including full-time AC and upgraded interiors for a superior stay.',
         shortDescription: 'Glass-walled living areas and anytime air-conditioning.',
+        priceDisplay: '₹18,000 Onwards',
         guestCapacity: '2-8 Guests',
         amenities: [
             { icon: 'snowflake', title: 'Full Time AC', description: 'Bedroom & Dining' },
@@ -47,10 +70,11 @@ export const CATEGORIES: Category[] = [
     {
         id: 'cat-luxury',
         slug: 'luxury',
-        title: 'Luxury Collection',
+        title: 'Luxury Houseboats',
         tagline: 'The Ultimate Floating Palace',
         description: 'Top-tier houseboats with jacuzzi, butler service, and unparalleled opulence.',
         shortDescription: 'Five-star amenities floating on the backwaters.',
+        priceDisplay: '₹35,000 Onwards',
         guestCapacity: '2-10 Guests',
         amenities: [
             { icon: 'crown', title: 'Butler Service', description: 'Personalized attention' },
@@ -72,6 +96,7 @@ export const CATEGORIES: Category[] = [
         tagline: 'Romantic Getaways',
         description: 'Private 1-bedroom boats designed for romance with flower decorations and candlelight dinners.',
         shortDescription: 'Intimate setting for couples.',
+        priceDisplay: '₹15,000 Onwards',
         guestCapacity: '2 Guests',
         amenities: [
             { icon: 'heart', title: 'Flower Decor', description: 'Welcome arrangement' },
@@ -93,6 +118,7 @@ export const CATEGORIES: Category[] = [
         tagline: 'Social & Budget Friendly',
         description: 'Book a room on a larger boat and enjoy the backwaters with fellow travelers.',
         shortDescription: 'Private bedroom with shared common areas.',
+        priceDisplay: '₹4,500 Onwards',
         guestCapacity: '2 Guests',
         amenities: [
             { icon: 'users', title: 'Social Atmosphere', description: 'Meet other travelers' },
@@ -114,6 +140,7 @@ export const CATEGORIES: Category[] = [
         tagline: 'Signature Experience',
         description: 'A curated 3-day voyage through the untapped backwaters. Experience the true essence of Kerala with this comprehensive package.',
         shortDescription: '3 Days / 4 Nights. Includes accommodation, meals, and sightseeing.',
+        priceDisplay: 'Custom Quote',
         guestCapacity: '2-6 Guests',
         amenities: [
             { icon: 'map', title: 'Village Visits', description: 'Guided tours' },

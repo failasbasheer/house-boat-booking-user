@@ -4,18 +4,30 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-
 import Link from 'next/link';
 
-export const KeralaPromoSection = () => {
+interface PromoSectionProps {
+    data: {
+        slug: string;
+        title: string;
+        tagline?: string;
+        description: string;
+        images: { hero: string };
+        priceDisplay: string;
+    } | null;
+}
+
+export const KeralaPromoSection = ({ data }: PromoSectionProps) => {
+    if (!data) return null;
+
     return (
         <section className="w-full max-w-[96rem] mx-auto px-6 lg:px-12 py-12 lg:py-16 font-sans bg-white">
-            <Link href="/categories/kerala-package">
+            <Link href={`/categories/${data.slug}`}>
                 <div className="relative w-full h-[350px] md:h-[420px] rounded-lg overflow-hidden group cursor-pointer bg-neutral-900">
                     {/* Background Image - Less Zoom on Hover, structured */}
                     <Image
-                        src="/kerala-tourism.jpg"
-                        alt="Kerala Backwaters"
+                        src={data.images.hero}
+                        alt={data.title}
                         fill
                         className="object-cover opacity-90 transition-transform duration-[2s] ease-out group-hover:scale-102"
                     />
@@ -38,7 +50,7 @@ export const KeralaPromoSection = () => {
                             <div className="flex items-center gap-3 mb-4">
                                 <span className="h-px w-8 bg-white/60"></span>
                                 <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.2em]">
-                                    Signature Experience
+                                    {data.tagline || 'Signature Experience'}
                                 </span>
                             </div>
 
@@ -48,10 +60,10 @@ export const KeralaPromoSection = () => {
                                 {/* Typography - Smaller, Stronger, Cleaner */}
                                 <div className="max-w-xl">
                                     <h3 className="text-3xl md:text-4xl font-serif text-white mb-2 leading-tight tracking-tight">
-                                        The Kerala Holiday Package
+                                        {data.title}
                                     </h3>
                                     <p className="text-white/70 text-sm font-light leading-relaxed max-w-md">
-                                        A curated 3-day voyage through the untapped backwaters.
+                                        {data.description}
                                     </p>
                                 </div>
 
@@ -64,7 +76,7 @@ export const KeralaPromoSection = () => {
                                     <div className="hidden md:block w-px h-10 bg-white/20"></div>
                                     <div>
                                         <p className="text-[9px] text-white/50 uppercase tracking-widest mb-1">Starting</p>
-                                        <p className="text-white font-serif text-lg">₹ 12,999</p>
+                                        <p className="text-white font-serif text-lg">{data.priceDisplay}</p>
                                     </div>
 
                                     <span className="ml-4 h-10 w-10 flex items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 group-hover:bg-white group-hover:text-black group-hover:border-white">

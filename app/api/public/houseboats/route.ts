@@ -1,0 +1,36 @@
+import { NextResponse } from 'next/server';
+import connectToDatabase from '@/lib/db';
+import { Houseboat } from '@/models/Houseboat';
+
+export const revalidate = 60; // Cache for 1 minute (pricing availability might change)
+
+export async function GET(request: Request) {
+    try {
+        await connectToDatabase();
+        const { searchParams } = new URL(request.url);
+        const category = searchParams.get('category'); // Optional category filter slug
+
+        let query: any = { status: 'active' };
+
+        // If sorting by category, we need the category ID 
+        // This is simplified; ideally we populate category_id
+        if (category) {
+            // This requires a lookup first if we filter by slug on related model
+            // For now, let's assume the frontend filters or we add logic later if needed
+            // A better approach: Houseboat.find().populate('category_id')
+        }
+
+        const boats = await Houseboat.find(query).populate('category_id');
+
+        // Manual filter if needed
+        let filteredBoats = boats;
+        if (category) {
+            filteredBoats = boats.filter((b: any) => b.category_id?.slug === category);
+        }
+
+        return NextResponse.json({ success: true, data: filteredBoats });
+    } catch (error) {
+        console.error("API Error", error);
+        return NextResponse.json({ success: false, error: 'Failed to fetch houseboats' }, { status: 500 });
+    }
+}

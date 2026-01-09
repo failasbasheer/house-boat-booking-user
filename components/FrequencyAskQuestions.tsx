@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, Phone, Mail, ChevronRight } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
+import QuickEnquiryModal from './modals/QuickEnquiryModal';
 import { FAQ_DATA, WHATSAPP_MESSAGE, WHATSAPP_NUMBER, CONTACT_PHONE, CONTACT_EMAIL } from "@/constants";
 
 // Types
@@ -76,6 +77,7 @@ const FAQItem = ({ item, isOpen, onClick }: FAQItemProps) => {
 // Main Component
 export const FAQ: React.FC = () => {
     const [openIndex, setOpenIndex] = useState<string | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleItem = (id: string) => {
         setOpenIndex(openIndex === id ? null : id);
@@ -83,6 +85,12 @@ export const FAQ: React.FC = () => {
 
     return (
         <section className="py-8 md:py-24 bg-gradient-to-b from-white to-ivory-50/50">
+            <QuickEnquiryModal
+                isOpen={isModalOpen}
+                closeModal={() => setIsModalOpen(false)}
+                source="FAQ - Support"
+                customMessage={WHATSAPP_MESSAGE}
+            />
             <div className="max-w-4xl mx-auto px-4 md:px-6">
 
                 {/* Header */}
@@ -157,8 +165,8 @@ export const FAQ: React.FC = () => {
                             {/* Contact Grid */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl">
                                 {/* WhatsApp */}
-                                <a
-                                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
                                     className="group flex flex-col items-center justify-center gap-3 bg-white/5 hover:bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-green-500/30 transition-all duration-300"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -168,7 +176,7 @@ export const FAQ: React.FC = () => {
                                         <span className="block text-white font-medium mb-0.5">WhatsApp</span>
                                         <span className="text-xs text-white/50 group-hover:text-green-300 transition-colors">Chat Instantly</span>
                                     </div>
-                                </a>
+                                </button>
 
                                 {/* Phone */}
                                 <a

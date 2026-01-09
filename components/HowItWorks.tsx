@@ -27,7 +27,11 @@ const itemVariants = {
   }
 };
 
+import { useState } from 'react';
+import QuickEnquiryModal from './modals/QuickEnquiryModal';
+
 export const HowItWorks: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const steps = [
     {
       id: "01",
@@ -51,6 +55,12 @@ export const HowItWorks: React.FC = () => {
 
   return (
     <section className="py-12 md:py-16 bg-white">
+      <QuickEnquiryModal
+        isOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(false)}
+        source="How It Works Section"
+        customMessage="Hi, I'm interested in starting a WhatsApp enquiry."
+      />
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Compact Header */}
@@ -111,7 +121,10 @@ export const HowItWorks: React.FC = () => {
 
         {/* Compact CTA */}
         <div className="mt-10 text-center md:text-left">
-          <button className="text-forest-900 text-sm font-semibold border-b border-bronze-300 pb-0.5 hover:border-forest-900 hover:text-forest-950 transition-all inline-flex items-center gap-2 group">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="text-forest-900 text-sm font-semibold border-b border-bronze-300 pb-0.5 hover:border-forest-900 hover:text-forest-950 transition-all inline-flex items-center gap-2 group"
+          >
             <WhatsAppIcon className="w-5 h-5 fill-white text-forest-900 group-hover:text-forest-950" />
             Start a WhatsApp Enquiry
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

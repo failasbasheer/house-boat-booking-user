@@ -12,9 +12,11 @@ interface BoatDetailsModalProps {
     boat: Boat | null;
     onClose: () => void;
 }
-
+import QuickEnquiryModal from './modals/QuickEnquiryModal';
+import { WhatsAppIcon } from './WhatsAppIcon';
 export default function BoatDetailsModal({ boat, onClose }: BoatDetailsModalProps) {
     const [activeImage, setActiveImage] = useState(0);
+    const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
     useEffect(() => {
         if (boat) {
@@ -35,14 +37,27 @@ export default function BoatDetailsModal({ boat, onClose }: BoatDetailsModalProp
 
     if (!boat) return null;
 
+    const handleEnquiry = () => {
+        setIsEnquiryModalOpen(true);
+    };
+
     const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
         `Hi, I'm interested in the ${boat.name} (${boat.categorySlug} category). Is it available?`
     )}`;
+
+    const enquiryMessage = `Hi, I'm interested in booking the ${boat.name} (${boat.categorySlug}).\n\nPrice: ${(boat as any).displayPrice || `₹${(boat.pricePerNight || 0).toLocaleString()}`}\nBedrooms: ${boat.bedrooms}`;
+
 
     return (
         <AnimatePresence>
             {boat && (
                 <>
+                    <QuickEnquiryModal
+                        isOpen={isEnquiryModalOpen}
+                        closeModal={() => setIsEnquiryModalOpen(false)}
+                        customMessage={enquiryMessage}
+                        source={`Boat Details - ${boat.name}`}
+                    />
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -288,17 +303,13 @@ export default function BoatDetailsModal({ boat, onClose }: BoatDetailsModalProp
                                     </motion.div>
                                 </div>
 
-                                <div className="p-4 md:p-6 border-t border-ivory-200 bg-white/50 backdrop-blur-md shrink-0 z-10">
-                                    <a
-                                        href={whatsappLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full px-6 py-4 bg-forest-900 hover:bg-forest-800 text-white rounded-xl font-bold text-sm tracking-wide uppercase flex items-center justify-center gap-2 transition-all shadow-xl shadow-forest-900/20 hover:shadow-forest-900/30 hover:-translate-y-0.5 group"
-                                    >
-                                        Check Availability on WhatsApp
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </a>
-                                </div>
+                                <button
+                                    onClick={handleEnquiry}
+                                    className="w-full px-6 py-3 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-lg font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-500/20 hover:shadow-green-500/30 hover:-translate-y-0.5 group"
+                                >
+                                    <WhatsAppIcon className="w-5 h-5 fill-white" />
+                                    Check Availability
+                                </button>
                             </div>
                         </motion.div>
                     </div>

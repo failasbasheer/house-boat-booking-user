@@ -14,8 +14,8 @@ interface BoatCardProps {
 
 const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
     // Helper for display price (matches API logic)
-    const displayPrice = (boat as any).displayPrice ||
-        `₹${(boat.pricePerNight || 0).toLocaleString()}`;
+    const displayPrice = (boat as any).priceDisplay || (boat as any).displayPrice ||
+        `₹${(boat.pricePerNight || 0).toLocaleString()} Onwards`;
 
     // Fallback image state
     const [imgSrc, setImgSrc] = useState(getImageUrl(boat.images.hero, 'houseboats'));

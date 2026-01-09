@@ -10,10 +10,14 @@ interface NavbarProps {
   scrollThreshold?: number;
 }
 
+import { WhatsAppIcon } from './WhatsAppIcon';
+import QuickEnquiryModal from './modals/QuickEnquiryModal';
+
 export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
   const [isPastHero, setIsPastHero] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,10 +65,19 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
     { name: 'Gallery', href: '/#gallery' },
   ];
 
-  const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const handleEnquiry = (source: string) => {
+    setIsModalOpen(true);
+    setMobileMenuOpen(false); // Close mobile menu if open
+  }
 
   return (
     <nav className={navClasses}>
+      <QuickEnquiryModal
+        isOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(false)}
+        source="Navbar"
+        customMessage="Hi, I'm interested in checking availability for a houseboat."
+      />
       <div className="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
@@ -89,14 +102,12 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
               {link.name}
             </Link>
           ))}
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => handleEnquiry('Desktop - Check Availability')}
             className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-black/5 ${buttonClass}`}
           >
             Check Availability
-          </a>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -150,12 +161,12 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
                   +91 98765 43210
                 </a>
 
-                <a
-                  href={whatsappLink}
+                <button
+                  onClick={() => handleEnquiry('Mobile - Start Whatsapp Chat')}
                   className="w-full py-4 bg-[#1C1917] text-white text-center text-sm font-bold uppercase tracking-widest rounded-xl hover:bg-black transition-colors block"
                 >
                   Start Whatsapp Chat
-                </a>
+                </button>
               </motion.div>
             </div>
           </motion.div>
