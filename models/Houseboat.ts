@@ -1,6 +1,62 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
-const houseboatSchema = new mongoose.Schema({
+export interface IHouseboat extends Document {
+    name: string;
+    slug: string;
+    category_id: mongoose.Types.ObjectId;
+    status: 'active' | 'maintenance' | 'decommissioned';
+    bedrooms: number;
+    capacity_adults: number;
+    capacity_children: number;
+    has_ac: boolean;
+    cruise_hours: number;
+    price_override?: number;
+    priceDisplay?: string;
+    shared_package_availability: boolean;
+    images: {
+        hero: string;
+        exterior?: string;
+        interior?: string;
+        bedroom?: string;
+        dining?: string;
+        bathroom?: string;
+        extra1?: string;
+        extra2?: string;
+        extra3?: string;
+        gallery?: string[];
+    };
+    notes?: string;
+    amenities?: mongoose.Types.ObjectId[];
+    features?: mongoose.Types.ObjectId[];
+    tagline?: string;
+    shortPitch?: string;
+    description?: string;
+    secondaryDescription?: string;
+    badges?: string[];
+    crew?: {
+        size: number;
+        roles: string[];
+    };
+    dining?: {
+        cuisineTypes: string[];
+        isPrivate: boolean;
+        wineSommelier?: boolean;
+    };
+    deck?: {
+        type: string;
+        seating?: string;
+    };
+    journeyFlow?: string[];
+    scenicRoutes?: {
+        name: string;
+        duration: string;
+        highlights: string;
+    }[];
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const houseboatSchema = new mongoose.Schema<IHouseboat>({
     // Core Identity
     name: { type: String, required: true },
     slug: { type: String, unique: true, required: true },
@@ -80,5 +136,5 @@ const houseboatSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Prevent recompilation error in Next.js
-export const Houseboat = mongoose.models.Houseboat || mongoose.model('Houseboat', houseboatSchema);
+export const Houseboat: Model<IHouseboat> = mongoose.models.Houseboat || mongoose.model<IHouseboat>('Houseboat', houseboatSchema);
 export default Houseboat;

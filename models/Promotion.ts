@@ -1,13 +1,22 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from 'mongoose';
 
-const promotionSchema = new mongoose.Schema({
+export interface IPromotion extends Document {
+    title: string;
+    description: string;
+    image: string;
+    code?: string;
+    isActive: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const promotionSchema = new mongoose.Schema<IPromotion>({
     title: { type: String, required: true },
     description: { type: String, required: true },
     image: { type: String, required: true }, // S3 URL
     code: { type: String },
     isActive: { type: Boolean, default: true },
-    createdAt: { type: Date, default: Date.now },
 }, { timestamps: true });
 
-export const Promotion = mongoose.models.Promotion || mongoose.model('Promotion', promotionSchema);
+export const Promotion: Model<IPromotion> = mongoose.models.Promotion || mongoose.model<IPromotion>('Promotion', promotionSchema);
 export default Promotion;

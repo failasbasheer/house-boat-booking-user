@@ -1,14 +1,24 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from 'mongoose';
 
-const enquirySchema = new mongoose.Schema({
+export interface IEnquiry extends Document {
+    name: string;
+    phone: string;
+    date: Date;
+    guests: string;
+    category: string;
+    status: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const enquirySchema = new mongoose.Schema<IEnquiry>({
     name: { type: String, required: true },
     phone: { type: String, required: true },
     date: { type: Date, required: true },
     guests: { type: String, required: true },
     category: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
     status: { type: String, default: 'new' }, // new, contacted, booked
 }, { timestamps: true });
 
-export const Enquiry = mongoose.models.Enquiry || mongoose.model('Enquiry', enquirySchema);
+export const Enquiry: Model<IEnquiry> = mongoose.models.Enquiry || mongoose.model<IEnquiry>('Enquiry', enquirySchema);
 export default Enquiry;
