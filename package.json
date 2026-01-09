@@ -13,6 +13,7 @@
     "@faker-js/faker": "^10.2.0",
     "@gsap/react": "^2.1.2",
     "@headlessui/react": "^2.2.9",
+    "dotenv": "^17.2.3",
     "framer-motion": "^11.0.0",
     "googleapis": "^169.0.0",
     "gsap": "^3.13.0",

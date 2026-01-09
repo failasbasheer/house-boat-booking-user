@@ -7,12 +7,12 @@ export const Gallery: React.FC = () => {
   const containerRef = useScrollAnimation();
 
   const images = [
-    { src: '/images/luxury-houseboat-exterior.webp', alt: 'Luxury Houseboat Exterior', className: 'md:col-span-2 md:row-span-2 h-[500px]' },
-    { src: '/images/palm-lined-canals.webp', alt: 'Palm Lined Canals', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
-    { src: '/images/premium-interiors.webp', alt: 'Premium Interiors', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
-    { src: '/images/sunset.jpg', alt: 'Backwater Sunset', className: 'md:col-span-1 md:row-span-2 h-[500px]' },
-    { src: '/images/serene-waters.webp', alt: 'Serene Waters', className: 'md:col-span-2 md:row-span-1 h-[240px]' },
-    { src: '/images/onboard-dining.webp', alt: 'Onboard Dining', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
+    { src: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/luxury-houseboat-exterior.webp', alt: 'Luxury Houseboat Exterior', className: 'md:col-span-2 md:row-span-2 h-[500px]' },
+    { src: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/palm-lined-canals.webp', alt: 'Palm Lined Canals', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
+    { src: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/premium-interiors.webp', alt: 'Premium Interiors', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
+    { src: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/sunset.jpg', alt: 'Backwater Sunset', className: 'md:col-span-1 md:row-span-2 h-[500px]' },
+    { src: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/serene-waters.webp', alt: 'Serene Waters', className: 'md:col-span-2 md:row-span-1 h-[240px]' },
+    { src: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/onboard-dining.webp', alt: 'Onboard Dining', className: 'md:col-span-1 md:row-span-1 h-[240px]' },
   ];
 
   return (
@@ -52,7 +52,7 @@ export const Gallery: React.FC = () => {
                   className="w-full h-[115%] object-cover absolute top-0 left-0 transition-transform duration-[2s] ease-out group-hover:scale-105"
                   style={{ top: '-7.5%' }} // Center the overflow
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/packages/budget.jpg';
+                    (e.target as HTMLImageElement).src = 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/budget.jpg';
                   }}
                 />
               </div>

@@ -16,146 +16,13 @@ export const PROMOTIONS: Promotion[] = [
         id: 'promo-early-bird',
         title: 'Early Bird Alert!',
         description: 'Book 30 days in advance and get flat 15% OFF on all Premium & Luxury fleets.',
-        image: '/images/sunset.jpg', // Using existing image
+        image: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/sunset.jpg', // Using existing image
         code: 'EARLY15',
         isActive: true
     }
 ];
 
-export const CATEGORIES: Category[] = [
-    {
-        id: 'cat-deluxe',
-        slug: 'deluxe',
-        title: 'Deluxe Houseboats',
-        tagline: 'The Essential Backwater Experience',
-        description: 'Perfect for first-time visitors offering comfortable amenities and authentic Kerala cuisine.',
-        shortDescription: 'Comfortable air-conditioned bedrooms with classic wooden interiors.',
-        priceDisplay: '₹8,500 Onwards',
-        guestCapacity: '2-6 Guests',
-        amenities: [
-            { icon: 'wind', title: 'AC Bedroom', description: '9PM - 6AM' },
-            { icon: 'utensils', title: 'Full Board Meals', description: 'Traditional Kerala Cuisine' },
-            { icon: 'wifi', title: 'Standard WiFi', description: 'Basic connectivity' },
-        ],
-        stats: {
-            totalBoats: 6,
-            rating: 4.5,
-        },
-        heroImage: '/packages/deluxe.webp',
-        testimonials: [],
-        whatsappTemplate: 'Hi, I am interested in the Deluxe Collection houseboats.',
-    },
-    {
-        id: 'cat-premium',
-        slug: 'premium',
-        title: 'Premium Houseboats',
-        tagline: 'Elevated Comfort & Style',
-        description: 'Added luxuries including full-time AC and upgraded interiors for a superior stay.',
-        shortDescription: 'Glass-walled living areas and anytime air-conditioning.',
-        priceDisplay: '₹18,000 Onwards',
-        guestCapacity: '2-8 Guests',
-        amenities: [
-            { icon: 'snowflake', title: 'Full Time AC', description: 'Bedroom & Dining' },
-            { icon: 'coffee', title: 'Premium Dining', description: 'Expanded menu options' },
-            { icon: 'tv', title: 'Entertainment', description: 'LED TV & Music System' },
-        ],
-        stats: {
-            totalBoats: 4,
-            rating: 4.7,
-        },
-        heroImage: '/packages/premium.webp',
-        testimonials: [],
-        whatsappTemplate: 'Hi, I am interested in the Premium Collection houseboats.',
-    },
-    {
-        id: 'cat-luxury',
-        slug: 'luxury',
-        title: 'Luxury Houseboats',
-        tagline: 'The Ultimate Floating Palace',
-        description: 'Top-tier houseboats with jacuzzi, butler service, and unparalleled opulence.',
-        shortDescription: 'Five-star amenities floating on the backwaters.',
-        priceDisplay: '₹35,000 Onwards',
-        guestCapacity: '2-10 Guests',
-        amenities: [
-            { icon: 'crown', title: 'Butler Service', description: 'Personalized attention' },
-            { icon: 'hot-tub', title: 'Jacuzzi / Bathtub', description: 'Private relaxation' },
-            { icon: 'palette', title: 'Designer Interiors', description: 'Modern aesthetic' },
-        ],
-        stats: {
-            totalBoats: 3,
-            rating: 4.9,
-        },
-        heroImage: '/packages/luxury.webp',
-        testimonials: [],
-        whatsappTemplate: 'Hi, I am interested in the Luxury Collection houseboats.',
-    },
-    {
-        id: 'cat-honeymoon',
-        slug: 'honeymoon',
-        title: 'Honeymoon Special',
-        tagline: 'Romantic Getaways',
-        description: 'Private 1-bedroom boats designed for romance with flower decorations and candlelight dinners.',
-        shortDescription: 'Intimate setting for couples.',
-        priceDisplay: '₹15,000 Onwards',
-        guestCapacity: '2 Guests',
-        amenities: [
-            { icon: 'heart', title: 'Flower Decor', description: 'Welcome arrangement' },
-            { icon: 'moon', title: 'Candlelight Dinner', description: 'Romantic evening' },
-            { icon: 'cake', title: 'Honeymoon Cake', description: 'Special celebration' },
-        ],
-        stats: {
-            totalBoats: 2,
-            rating: 4.9,
-        },
-        heroImage: '/packages/honeymoon.webp',
-        testimonials: [],
-        whatsappTemplate: 'Hi, I am looking for a Honeymoon Houseboat package.',
-    },
-    {
-        id: 'cat-shared',
-        slug: 'shared',
-        title: 'Shared Experiences',
-        tagline: 'Social & Budget Friendly',
-        description: 'Book a room on a larger boat and enjoy the backwaters with fellow travelers.',
-        shortDescription: 'Private bedroom with shared common areas.',
-        priceDisplay: '₹4,500 Onwards',
-        guestCapacity: '2 Guests',
-        amenities: [
-            { icon: 'users', title: 'Social Atmosphere', description: 'Meet other travelers' },
-            { icon: 'wallet', title: 'Economical', description: 'Best value option' },
-            { icon: 'bed', title: 'Private Room', description: 'En-suite bathroom' },
-        ],
-        stats: {
-            totalBoats: 4,
-            rating: 4.4,
-        },
-        heroImage: '/packages/budget.jpg',
-        testimonials: [],
-        whatsappTemplate: 'Hi, I am interested in Shared Houseboat options.',
-    },
-    {
-        id: 'cat-kerala-package',
-        slug: 'kerala-package',
-        title: 'Kerala Holiday Package',
-        tagline: 'Signature Experience',
-        description: 'A curated 3-day voyage through the untapped backwaters. Experience the true essence of Kerala with this comprehensive package.',
-        shortDescription: '3 Days / 4 Nights. Includes accommodation, meals, and sightseeing.',
-        priceDisplay: 'Custom Quote',
-        guestCapacity: '2-6 Guests',
-        amenities: [
-            { icon: 'map', title: 'Village Visits', description: 'Guided tours' },
-            { icon: 'sun', title: '3 Days / 4 Nights', description: 'Extended Stay' },
-            { icon: 'coffee', title: 'All Meals Included', description: 'Kerala Delicacies' },
-        ],
-        stats: {
-            totalBoats: 0, // Package, not boat count
-            rating: 4.9,
-        },
-        heroImage: '/kerala-tourism.jpg', // Using the image from promo section
-        testimonials: [],
-        whatsappTemplate: 'Hi, I am interested in the 3-day Kerala Holiday Package.',
-    },
-];
+
 
 export const BOATS: Boat[] = [
     // Deluxe Boats
@@ -172,10 +39,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 5,
         images: {
-            hero: '/images/serene-waters.webp',
-            exterior: '/images/serene-waters.jpg',
-            interior: '/collection/interior.jpg',
-            bedroom: '/collection/IMG-20250617-WA0019 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/serene-waters.webp',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/serene-waters.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/interior.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0019 (3).jpg'
         },
         tagline: 'Traditional elegance',
         description: 'A beautiful single bedroom houseboat perfect for couples looking for a budget-friendly yet authentic experience.',
@@ -197,10 +64,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 5,
         images: {
-            hero: '/images/backwater-sunset.webp',
-            exterior: '/images/backwater-sunset.webp',
-            interior: '/collection/interior2.jpg',
-            bedroom: '/collection/IMG-20250617-WA0018 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/backwater-sunset.webp',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/backwater-sunset.webp',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/interior2.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0018 (3).jpg'
         },
         tagline: 'Family favorite',
         description: 'Spacious 2-bedroom boat ideal for small families.',
@@ -222,10 +89,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 5,
         images: {
-            hero: '/images/palm-lined-canals.webp',
-            exterior: '/images/palm-lined-canals.webp',
-            interior: '/collection/chair.jpg',
-            bedroom: '/collection/IMG-20250217-WA0123 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/palm-lined-canals.webp',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/palm-lined-canals.webp',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/chair.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250217-WA0123 (3).jpg'
         },
         tagline: 'Group getaway',
         description: 'Perfect for groups of friends, offering 3 cozy bedrooms.',
@@ -249,10 +116,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 6,
         images: {
-            hero: '/images/premium-interiors.webp',
-            exterior: '/collection/hero.jpg',
-            interior: '/images/premium-interiors.webp',
-            bedroom: '/collection/IMG-20250617-WA0019 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/premium-interiors.webp',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/hero.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/premium-interiors.webp',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0019 (3).jpg'
         },
         tagline: 'Glass-walled luxury',
         description: 'Enjoy the view from your air-conditioned living area anytime.',
@@ -274,10 +141,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 6,
         images: {
-            hero: '/images/onboard-dining.webp',
-            exterior: '/images/onboard-dining.jpg',
-            interior: '/collection/interior.jpg',
-            bedroom: '/collection/IMG-20250617-WA0018 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/onboard-dining.webp',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/onboard-dining.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/interior.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0018 (3).jpg'
         },
         tagline: 'Exquisite dining',
         description: 'Known for its exceptional onboard dining experience and spacious interiors.',
@@ -299,10 +166,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 6,
         images: {
-            hero: '/collection/IMG-20250617-WA0013 (3).jpg',
-            exterior: '/collection/IMG-20250617-WA0013 (3).jpg',
-            interior: '/collection/chair.jpg',
-            bedroom: '/collection/IMG-20250217-WA0121 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0013 (3).jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0013 (3).jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/chair.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250217-WA0121 (3).jpg'
         },
         tagline: 'Large family retreat',
         description: 'A massive 4-bedroom premium boat for extended families.',
@@ -326,10 +193,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 7,
         images: {
-            hero: '/images/luxury-houseboat-exterior.webp',
-            exterior: '/images/luxury-houseboat-exterior.webp',
-            interior: '/images/premium-interiors.webp',
-            bedroom: '/collection/IMG-20250617-WA0019 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/luxury-houseboat-exterior.webp',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/luxury-houseboat-exterior.webp',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/premium-interiors.webp',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0019 (3).jpg'
         },
         tagline: 'Floating palace',
         description: 'Experience royalty with jacuzzi, butler service and ultra-premium finishings.',
@@ -351,10 +218,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 7,
         images: {
-            hero: '/collection/hero.jpg',
-            exterior: '/collection/hero.jpg',
-            interior: '/collection/interior2.jpg',
-            bedroom: '/collection/IMG-20250217-WA0123 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/hero.jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/hero.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/interior2.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250217-WA0123 (3).jpg'
         },
         tagline: 'Intimate luxury',
         description: 'A single bedroom luxury craft for those who demand the best.',
@@ -376,10 +243,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 7,
         images: {
-            hero: '/images/hero.jpg',
-            exterior: '/images/hero.jpg',
-            interior: '/images/onboard-dining.webp',
-            bedroom: '/collection/IMG-20250617-WA0018 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/hero.jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/hero.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/onboard-dining.webp',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0018 (3).jpg'
         },
         tagline: 'Grandeur afloat',
         description: 'Three bedrooms of pure luxury, perfect for high-end corporate retreats or VIP families.',
@@ -403,10 +270,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 6,
         images: {
-            hero: '/packages/honeymoon.webp',
-            exterior: '/images/sunset.jpg',
-            interior: '/collection/interior.jpg',
-            bedroom: '/collection/IMG-20250617-WA0019 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/honeymoon.webp',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/sunset.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/interior.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0019 (3).jpg'
         },
         tagline: 'Pure romance',
         description: 'Special honeymoon suite with privacy and romantic ambiance.',
@@ -428,10 +295,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 6,
         images: {
-            hero: '/images/sunset.jpg',
-            exterior: '/images/sunset.jpg',
-            interior: '/collection/interior2.jpg',
-            bedroom: '/collection/thumbnail.jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/sunset.jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/sunset.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/interior2.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/thumbnail.jpg'
         },
         tagline: 'Sunset romance',
         description: 'Designed for couples to enjoy the stunning Alleppey sunsets in privacy.',
@@ -453,10 +320,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 6,
         images: {
-            hero: '/collection/IMG-20250217-WA0121 (3).jpg',
-            exterior: '/collection/IMG-20250217-WA0121 (3).jpg',
-            interior: '/images/premium-interiors.webp',
-            bedroom: '/collection/IMG-20250617-WA0013 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250217-WA0121 (3).jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250217-WA0121 (3).jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/premium-interiors.webp',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0013 (3).jpg'
         },
         tagline: 'Luxury honeymoon',
         description: 'A premium honeymoon boat with glass walls and full-time AC.',
@@ -480,10 +347,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 5,
         images: {
-            hero: '/packages/budget.jpg',
-            exterior: '/packages/budget.jpg',
-            interior: '/collection/chair.jpg',
-            bedroom: '/collection/IMG-20250217-WA0123 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/budget.jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/budget.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/chair.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250217-WA0123 (3).jpg'
         },
         tagline: 'Meet & Greet',
         description: 'A 5-bedroom boat where you book a single room. Great for meeting people.',
@@ -506,10 +373,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 5,
         images: {
-            hero: '/collection/IMG-20250617-WA0018 (3).jpg',
-            exterior: '/collection/IMG-20250617-WA0018 (3).jpg',
-            interior: '/collection/interior.jpg',
-            bedroom: '/collection/IMG-20250617-WA0019 (3).jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0018 (3).jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0018 (3).jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/interior.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/IMG-20250617-WA0019 (3).jpg'
         },
         tagline: 'Travelers choice',
         description: 'Economical way to enjoy the backwaters.',
@@ -532,10 +399,10 @@ export const BOATS: Boat[] = [
         has_ac: true,
         cruise_hours: 5,
         images: {
-            hero: '/images/serene-waters.jpg',
-            exterior: '/images/serene-waters.jpg',
-            interior: '/images/onboard-dining.jpg',
-            bedroom: '/collection/thumbnail.jpg'
+            hero: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/serene-waters.jpg',
+            exterior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/serene-waters.jpg',
+            interior: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/images/onboard-dining.jpg',
+            bedroom: 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/collection/thumbnail.jpg'
         },
         tagline: 'Large group shared',
         description: 'A massive 6-bedroom boat with private rooms available.',

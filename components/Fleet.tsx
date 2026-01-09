@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Star, Users, Clock } from 'lucide-react';
-import { FLEET_CATEGORIES } from '@/constants';
+
 import { Category } from '@/types';
 
 // Register GSAP

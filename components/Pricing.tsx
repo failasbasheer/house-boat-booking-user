@@ -74,9 +74,9 @@ export const PricingSplitFocus: React.FC = () => {
             className={`absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out ${activeIdx === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
               }`}
             style={{
-              backgroundImage: `url(${pkg.title.toLowerCase().includes('day') ? '/packages/budget.jpg' :
-                pkg.title.toLowerCase().includes('luxury') ? '/packages/luxury.webp' :
-                  '/packages/premium.webp'
+              backgroundImage: `url(${pkg.title.toLowerCase().includes('day') ? 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/budget.jpg' :
+                pkg.title.toLowerCase().includes('luxury') ? 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/luxury.webp' :
+                  'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/premium.webp'
                 })`
             }}
           >
