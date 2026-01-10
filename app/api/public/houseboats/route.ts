@@ -34,7 +34,20 @@ export async function GET(request: Request) {
             filteredBoats = boats.filter((b: any) => b.category_id?.slug === category);
         }
 
-        return NextResponse.json({ success: true, data: filteredBoats });
+        // Transform data to match frontend interfaces
+        const transformedBoats = filteredBoats.map((boat: any) => {
+            const boatObj = boat.toObject();
+            return {
+                ...boatObj,
+                id: boatObj._id.toString(),
+                categorySlug: boat.category_id?.slug || 'uncategorized',
+                categoryName: boat.category_id?.name || 'Uncategorized',
+                maxGuests: boat.capacity_adults + boat.capacity_children, // Computed helper
+                pricePerNight: boat.price_override || boat.category_id?.base_price || 0, // Fallback to category price
+            };
+        });
+
+        return NextResponse.json({ success: true, data: transformedBoats });
     } catch (error) {
         console.error("API Error", error);
         return NextResponse.json({ success: false, error: 'Failed to fetch houseboats' }, { status: 500 });

@@ -58,7 +58,7 @@ function BoatFilters() {
                 setBoats(dbBoats);
 
                 if (dbCategories && dbCategories.length > 0) {
-                    setCategoriesData(dbCategories.filter((c: any) => c.slug !== 'romantic'));
+                    setCategoriesData(dbCategories.filter((c: any) => c.slug !== 'romantic' && c.title && c.title.trim() !== ''));
                 }
             } catch (err) {
                 setError('Failed to load data. Please try again later.');
