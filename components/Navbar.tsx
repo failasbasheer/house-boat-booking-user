@@ -13,7 +13,12 @@ interface NavbarProps {
 import { WhatsAppIcon } from './WhatsAppIcon';
 import QuickEnquiryModal from './modals/QuickEnquiryModal';
 
+import { useSettings } from '@/context/SettingsContext';
+
 export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
+  const settings = useSettings();
+  const { whatsappNumber, whatsappMessage } = settings;
+
   const [isPastHero, setIsPastHero] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -76,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
         source="Navbar"
-        customMessage="Hi, I'm interested in checking availability for a houseboat."
+        customMessage={whatsappMessage}
       />
       <div className="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
         {/* Logo */}
@@ -155,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrollThreshold }) => {
               >
                 <p className="text-xs uppercase tracking-widest text-stone-500 mb-4">Direct Contact</p>
                 <a
-                  href={`tel:${WHATSAPP_NUMBER}`} // Fallback or direct phone
+                  href={`tel:${whatsappNumber}`} // Fallback or direct phone
                   className="block text-xl font-medium text-stone-900 mb-6"
                 >
                   +91 98765 43210

@@ -10,7 +10,10 @@ import QuickEnquiryModal from './modals/QuickEnquiryModal';
 import { useState } from 'react';
 
 
+import { useSettings } from '@/context/SettingsContext';
+
 export const Footer: React.FC = () => {
+  const { whatsappMessage } = useSettings();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -19,7 +22,7 @@ export const Footer: React.FC = () => {
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
         source="Footer"
-        customMessage={WHATSAPP_MESSAGE}
+        customMessage={whatsappMessage}
       />
       {/* Decorative large text background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[20vw] font-serif text-white/[0.03] pointer-events-none whitespace-nowrap leading-none select-none">

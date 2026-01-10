@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display, Cinzel } from "next/font/google";
 import "./globals.css";
+import { SettingsProvider } from '@/context/SettingsContext';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
     subsets: ["latin"],
@@ -30,7 +31,9 @@ export default function RootLayout({
     return (
         <html lang="en" className="scroll-smooth">
             <body className={`${plusJakartaSans.variable} ${playfairDisplay.variable} ${cinzel.variable} font-sans bg-white text-espresso-900 antialiased overflow-x-hidden selection:bg-forest-800 selection:text-white`}>
-                {children}
+                <SettingsProvider>
+                    {children}
+                </SettingsProvider>
             </body>
         </html>
     );

@@ -13,10 +13,6 @@ interface BoatCardProps {
 }
 
 const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
-    // Helper for display price (matches API logic)
-    const displayPrice = (boat as any).priceDisplay || (boat as any).displayPrice ||
-        `₹${(boat.pricePerNight || 0).toLocaleString()} Onwards`;
-
     // Fallback image state
     const [imgSrc, setImgSrc] = useState(getImageUrl(boat.images.hero, 'houseboats'));
 
@@ -56,17 +52,6 @@ const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
                         <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-bronze-500 mb-0.5 truncate">{boat.categorySlug}</p>
                         <h3 className="text-base md:text-lg font-serif text-forest-900 group-hover:text-forest-700 transition-colors truncate leading-tight">{boat.name}</h3>
                     </div>
-                    <div className="flex items-center gap-1 shrink-0 bg-ivory-50 px-1.5 py-0.5 rounded w-fit md:bg-transparent md:px-0 md:py-0">
-                        <Star className="w-2.5 h-2.5 md:w-3 md:h-3 fill-amber-400 text-amber-400" />
-                        <span className="text-[10px] md:text-sm font-bold text-forest-900">4.8</span>
-                    </div>
-                </div>
-
-                <div className="flex items-baseline gap-1 mb-2 md:mb-3">
-                    <span className="text-sm md:text-base font-medium text-forest-900">
-                        {displayPrice}
-                    </span>
-                    <span className="text-[8px] md:text-[10px] text-espresso-500">/ night</span>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-y-1.5 pt-2 md:pt-3 border-t border-ivory-100">
@@ -83,6 +68,7 @@ const BoatCard = memo(({ boat, onClick, priority = false }: BoatCardProps) => {
         </div>
     );
 });
+
 
 BoatCard.displayName = 'BoatCard';
 

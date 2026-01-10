@@ -8,6 +8,8 @@ import { useGSAP } from '@gsap/react';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import QuickEnquiryModal from './modals/QuickEnquiryModal';
 
+import { useSettings } from '@/context/SettingsContext';
+
 const WaveSeparator = () => (
     <div className="absolute bottom-0 left-0 w-full z-20 pointer-events-none translate-y-1">
         <svg
@@ -26,6 +28,7 @@ const WaveSeparator = () => (
 );
 
 export const Hero: React.FC = () => {
+    const { whatsappNumber } = useSettings();
     const containerRef = useRef<HTMLDivElement>(null);
     const bgImageRef = useRef<HTMLImageElement>(null);
 
@@ -47,19 +50,13 @@ export const Hero: React.FC = () => {
             yoyo: true
         });
 
-        tl.from('.hero-badge', {
+        tl.from('.hero-title', {
             y: 20,
             opacity: 0,
-            duration: 0.5,
+            duration: 0.6,
+            stagger: 0.05,
             ease: "power2.out"
         })
-            .from('.hero-title', {
-                y: 20,
-                opacity: 0,
-                duration: 0.6,
-                stagger: 0.05,
-                ease: "power2.out"
-            }, "-=0.4")
             .from('.hero-desc', {
                 y: 20,
                 opacity: 0,
@@ -87,7 +84,7 @@ export const Hero: React.FC = () => {
     };
 
     return (
-        <section ref={containerRef} className="relative min-h-[115vh] w-full flex flex-col pt-0 pb-0 overflow-hidden">
+        <section ref={containerRef} className="relative min-h-[125vh] md:min-h-[135vh] w-full flex flex-col pt-0 pb-0 overflow-hidden">
             <QuickEnquiryModal
                 isOpen={isModalOpen}
                 closeModal={() => setIsModalOpen(false)}
@@ -105,24 +102,19 @@ export const Hero: React.FC = () => {
             </div>
 
             <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col justify-center h-screen">
-                <div className="text-center w-full max-w-4xl mx-auto mb-12 md:mb-16 mt-10 md:mt-0">
-                    <div className="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md mt-6 border border-white/20 mb-8">
-                        <Star className="w-3.5 h-3.5 text-bronze-400 fill-bronze-400" />
-                        <span className="text-white text-xs font-semibold tracking-wide uppercase">Premium Houseboat Experience</span>
-                    </div>
-
-                    <h1 className="hero-title font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-12 tracking-tight drop-shadow-lg">
+                <div className="text-center w-full max-w-4xl mx-auto mb-8 md:mb-16 mt-20 md:mt-0">
+                    <h1 className="hero-title font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8 md:mb-12 tracking-tight drop-shadow-lg">
                         Silence is the <br />
                         <span className="italic text-ivory-100 font-light">ultimate luxury.</span>
                     </h1>
 
-                    <p className="hero-desc text-lg md:text-xl text-ivory-100/90 max-w-2xl mx-auto font-light leading-relaxed mb-16">
+                    <p className="hero-desc text-base md:text-xl text-ivory-100/90 max-w-2xl mx-auto font-light leading-relaxed mb-10 md:mb-16 px-4">
                         Drift through the untouched canals of Alleppey. Verified premium houseboats.
                         Professional crews. Transparent pricing.
                     </p>
                 </div>
 
-                <div className="hero-form w-full max-w-6xl mx-auto">
+                <div className="hero-form w-full max-w-6xl mx-auto px-2 md:px-0">
                     <form onSubmit={handleBooking} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-3 md:p-4 shadow-2xl relative overflow-hidden group">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-20 bg-white/5 blur-3xl rounded-full -z-10" />
 

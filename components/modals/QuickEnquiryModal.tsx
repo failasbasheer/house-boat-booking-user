@@ -13,7 +13,10 @@ interface QuickEnquiryModalProps {
     source?: string;
 }
 
+import { useSettings } from '@/context/SettingsContext';
+
 export default function QuickEnquiryModal({ isOpen, closeModal, category, customMessage, source }: QuickEnquiryModalProps) {
+    const { whatsappNumber } = useSettings();
     const [formData, setFormData] = useState({ name: '', phone: '' });
     const [loading, setLoading] = useState(false);
 
@@ -41,7 +44,7 @@ export default function QuickEnquiryModal({ isOpen, closeModal, category, custom
             message = encodeURIComponent(`Hi, I'm interested in booking a houseboat.\n\nName: ${formData.name}\nPhone: ${formData.phone}`);
         }
 
-        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
         try {
             await fetch('/api/enquiry', {

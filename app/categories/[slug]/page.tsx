@@ -9,7 +9,7 @@ import { Footer } from '@/components/Footer';
 import * as LucideIcons from 'lucide-react';
 import { Category } from '@/types';
 import { WhatsAppIcon } from '@/components/WhatsAppIcon';
-import { WHATSAPP_NUMBER } from '@/constants';
+
 import EnquireNowButton from '@/components/categories/EnquireNowButton';
 
 export async function generateStaticParams() {

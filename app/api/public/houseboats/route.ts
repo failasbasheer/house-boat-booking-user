@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
 import { Houseboat } from '@/models/Houseboat';
+import '@/models/Amenity'; // Register Amenity model
+import '@/models/Feature'; // Register Feature model
 
 export const revalidate = 60; // Cache for 1 minute (pricing availability might change)
 
@@ -20,7 +22,10 @@ export async function GET(request: Request) {
             // A better approach: Houseboat.find().populate('category_id')
         }
 
-        const boats = await Houseboat.find(query).populate('category_id');
+        const boats = await Houseboat.find(query)
+            .populate('category_id')
+            .populate('amenities')
+            .populate('features');
 
         // Manual filter if needed
         let filteredBoats = boats;

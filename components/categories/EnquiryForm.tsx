@@ -6,9 +6,12 @@ import { useState } from 'react';
 import { Category } from '@/types';
 import { Calendar, Users, Phone, ArrowRight, ShieldCheck } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/WhatsAppIcon';
-import { WHATSAPP_NUMBER } from '@/constants';
+
+
+import { useSettings } from '@/context/SettingsContext';
 
 export default function EnquiryForm({ category }: { category: Category }) {
+    const { whatsappNumber } = useSettings();
     const [formData, setFormData] = useState({ name: '', date: '', guests: '2', phone: '' });
     const [loading, setLoading] = useState(false);
 
@@ -18,7 +21,7 @@ export default function EnquiryForm({ category }: { category: Category }) {
 
         // 1. Prepare WhatsApp URL data (do this first to ensure we have it)
         const message = encodeURIComponent(`${category.whatsappTemplate}\n\nName: ${formData.name}\nPhone: ${formData.phone}\nDate: ${formData.date}\nGuests: ${formData.guests}\nCategory: ${category.title}`);
-        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
         try {
             // 2. Persist Data to Backend
