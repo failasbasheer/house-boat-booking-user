@@ -17,6 +17,7 @@ export interface IPackage extends Document {
         hero: string;
         gallery?: string[];
     };
+    imagePlaceholder?: string;
     itinerary?: {
         day?: number;
         title?: string;
@@ -24,6 +25,7 @@ export interface IPackage extends Document {
     }[];
     whatsappTemplate?: string;
     isActive: boolean;
+    isHero?: boolean;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -42,16 +44,18 @@ const packageSchema = new mongoose.Schema<IPackage>({
         description: String
     }],
     images: {
-        hero: { type: String, required: true }, // S3 URL
+        hero: { type: String },
         gallery: [String]
     },
+    imagePlaceholder: String,
     itinerary: [{
         day: Number,
         title: String,
         description: String
     }],
     whatsappTemplate: String,
-    isActive: { type: Boolean, default: true }
+    isActive: { type: Boolean, default: true },
+    isHero: { type: Boolean, default: false }
 }, { timestamps: true });
 
 export const Package: Model<IPackage> = mongoose.models.Package || mongoose.model<IPackage>('Package', packageSchema);

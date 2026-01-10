@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { X, Phone, User, Loader2 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/WhatsAppIcon';
-import { WHATSAPP_NUMBER } from '@/constants';
 import { Category } from '@/types';
 
 interface QuickEnquiryModalProps {
@@ -23,11 +22,14 @@ export default function QuickEnquiryModal({ isOpen, closeModal, category, custom
     // Prevent body scroll when modal is open
     useEffect(() => {
         if (isOpen) {
+            const originalStyle = window.getComputedStyle(document.body).overflow;
             document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalStyle;
+                document.documentElement.style.overflow = '';
+            };
         }
-        return () => { document.body.style.overflow = 'unset'; };
     }, [isOpen]);
 
     const handleSubmit = async (e: React.FormEvent) => {

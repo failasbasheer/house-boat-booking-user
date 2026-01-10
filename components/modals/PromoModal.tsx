@@ -46,11 +46,24 @@ export default function PromoModal() {
     // Prevent body scroll when modal is open
     useEffect(() => {
         if (isOpen) {
+            const originalStyle = window.getComputedStyle(document.body).overflow;
             document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalStyle;
+                document.documentElement.style.overflow = '';
+            };
         }
-        return () => { document.body.style.overflow = 'unset'; };
+    }, [isOpen]);
+
+    // Auto-close after 3 seconds
+    useEffect(() => {
+        if (isOpen) {
+            const timer = setTimeout(() => {
+                setIsOpen(false);
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
     }, [isOpen]);
 
     const handleClaim = () => {

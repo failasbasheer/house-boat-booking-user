@@ -2,7 +2,6 @@
 
 
 import React from 'react';
-import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE } from '../constants';
 import { Anchor, MapPin, ShieldCheck, Clock } from 'lucide-react';
 
 import { WhatsAppIcon } from './WhatsAppIcon';

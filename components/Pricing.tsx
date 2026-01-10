@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { WHATSAPP_NUMBER } from '../constants';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 import QuickEnquiryModal from './modals/QuickEnquiryModal';
@@ -25,7 +24,7 @@ export const PricingSplitFocus: React.FC<PricingProps> = ({ packages }) => {
   if (!packages || packages.length === 0) return null;
 
   return (
-    <section ref={containerRef} id="pricing" className="bg-white min-h-screen flex flex-col lg:flex-row">
+    <section ref={containerRef} id="pricing" className="bg-white min-h-screen flex flex-col lg:flex-row overflow-hidden">
       <QuickEnquiryModal
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}

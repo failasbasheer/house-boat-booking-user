@@ -3,7 +3,6 @@
 import { Boat } from '@/types';
 import { X, Users, Bed, Anchor, ArrowRight, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { WHATSAPP_NUMBER } from '@/constants';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { getImageUrl } from '@/lib/utils';

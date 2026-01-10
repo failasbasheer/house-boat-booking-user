@@ -2,7 +2,6 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE, CONTACT_PHONE, CONTACT_EMAIL } from '@/constants';
 
 interface SettingsData {
     whatsappNumber: string;
@@ -12,10 +11,10 @@ interface SettingsData {
 }
 
 const defaultSettings: SettingsData = {
-    whatsappNumber: WHATSAPP_NUMBER,
-    whatsappMessage: WHATSAPP_MESSAGE,
-    contactPhone: CONTACT_PHONE,
-    contactEmail: CONTACT_EMAIL,
+    whatsappNumber: "916282118829",
+    whatsappMessage: "Hi, I'm interested in checking availability for a houseboat experience.",
+    contactPhone: "+91 62821 18829",
+    contactEmail: "hello@alleppeyhouseboats.com",
 };
 
 const SettingsContext = createContext<SettingsData>(defaultSettings);

@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { ArrowDown, Calendar, Users, Ship, Clock, Star } from 'lucide-react';
-import { WHATSAPP_NUMBER } from '../constants';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { WhatsAppIcon } from './WhatsAppIcon';

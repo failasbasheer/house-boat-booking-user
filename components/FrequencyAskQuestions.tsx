@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, Phone, Mail, ChevronRight } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import QuickEnquiryModal from './modals/QuickEnquiryModal';
-import { FAQ_DATA, WHATSAPP_MESSAGE, WHATSAPP_NUMBER, CONTACT_PHONE, CONTACT_EMAIL } from "@/constants";
+import { FAQ_DATA } from "@/constants";
+import { useSettings } from "@/context/SettingsContext";
 
 // Types
 interface FAQItemProps {
@@ -76,6 +77,7 @@ const FAQItem = ({ item, isOpen, onClick }: FAQItemProps) => {
 
 // Main Component
 export const FAQ: React.FC = () => {
+    const { whatsappMessage, contactPhone, contactEmail } = useSettings();
     const [openIndex, setOpenIndex] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -89,7 +91,7 @@ export const FAQ: React.FC = () => {
                 isOpen={isModalOpen}
                 closeModal={() => setIsModalOpen(false)}
                 source="FAQ - Support"
-                customMessage={WHATSAPP_MESSAGE}
+                customMessage={whatsappMessage}
             />
             <div className="max-w-4xl mx-auto px-4 md:px-6">
 
@@ -180,7 +182,7 @@ export const FAQ: React.FC = () => {
 
                                 {/* Phone */}
                                 <a
-                                    href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+                                    href={`tel:${contactPhone?.replace(/\s/g, '')}`}
                                     className="group flex flex-col items-center justify-center gap-3 bg-white/5 hover:bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-bronze-500/30 transition-all duration-300"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-bronze-500 text-white flex items-center justify-center shadow-lg shadow-bronze-500/30 group-hover:scale-110 transition-transform duration-300">
@@ -188,13 +190,13 @@ export const FAQ: React.FC = () => {
                                     </div>
                                     <div className="text-center">
                                         <span className="block text-white font-medium mb-0.5">Call Us</span>
-                                        <span className="text-xs text-white/50 group-hover:text-bronze-300 transition-colors">{CONTACT_PHONE}</span>
+                                        <span className="text-xs text-white/50 group-hover:text-bronze-300 transition-colors">{contactPhone}</span>
                                     </div>
                                 </a>
 
                                 {/* Email */}
                                 <a
-                                    href={`mailto:${CONTACT_EMAIL}`}
+                                    href={`mailto:${contactEmail}`}
                                     className="group flex flex-col items-center justify-center gap-3 bg-white/5 hover:bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-blue-500/30 transition-all duration-300"
                                 >
                                     <div className="w-12 h-12 rounded-full bg-blue-500/20 text-blue-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

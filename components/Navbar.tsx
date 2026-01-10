@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Anchor } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE } from '../constants';
 import Link from 'next/link';
 
 interface NavbarProps {

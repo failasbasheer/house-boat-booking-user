@@ -1,30 +1,11 @@
 import { HouseboatTier, PricingPlan, Testimonial, FAQCategory } from './types';
 
-export const WHATSAPP_NUMBER = "916282118829";
-export const WHATSAPP_MESSAGE = "Hi, I'm interested in checking availability for a houseboat experience.";
-export const CONTACT_PHONE = "+91 62821 18829";
-export const CONTACT_EMAIL = "hello@alleppeyhouseboats.com";
 
 
 
-export const PRICING_PACKAGES: PricingPlan[] = [
-  {
-    title: "Day Cruise Packages",
-    duration: "11:00 AM - 5:00 PM",
-    description: "Perfect for a quick yet immersive backwater experience. Enjoy a traditional lunch and sunset tea while cruising the serene canals.",
-    includes: ["Welcome Drink", "Traditional Lunch", "Evening Tea & Snacks", "6 Hours Cruising"],
-    priceEstimate: "From ₹8,500",
-    bestFor: "Day Trippers"
-  },
-  {
-    title: "Overnight Stay",
-    duration: "12:00 PM - 9:00 AM",
-    description: "The complete backwater experience. Sunset cruise, starlit dinner, and a peaceful night on the water. Wake up to the sounds of nature.",
-    includes: ["Lunch, Dinner, Breakfast", "Candlelight Dinner Option", "21 Hours Onboard", "Private Bedroom"],
-    priceEstimate: "From ₹12,000",
-    bestFor: "Full Experience"
-  }
-];
+
+
+
 
 
 export const FAQ_DATA: FAQCategory[] = [

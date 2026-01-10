@@ -11,18 +11,15 @@ import { Testimonials } from '@/components/Testimonials';
 import { Gallery } from '@/components/Gallery';
 import { FAQ } from '@/components/FrequencyAskQuestions';
 import { Footer } from '@/components/Footer';
-import { PricingSplitFocus as Pricing } from '@/components/Pricing';
 import PromoModal from '@/components/modals/PromoModal';
-import PackageModel from '@/models/Package';
-import connectToDatabase from '@/lib/db';
+// import PackageModel from '@/models/Package';
+// import connectToDatabase from '@/lib/db';
 import { getAllCategories } from '@/lib/categories';
+import { getHeroPackage } from '@/lib/packages';
 
 export default async function Home() {
     const categories = await getAllCategories();
-
-    await connectToDatabase();
-    const promoPackage = await PackageModel.findOne({ slug: 'kerala-package' }).lean();
-    const pricingPackages = await PackageModel.find({ is_active: true, type: 'package' }).lean();
+    const heroPackage = await getHeroPackage();
 
     return (
         <div className="min-h-screen bg-white text-espresso-900 font-sans">
@@ -38,14 +35,11 @@ export default async function Home() {
                 {/* Emotional reinforcement */}
                 <Experience />
 
-                {/* Pricing Packages */}
-                <Pricing packages={JSON.parse(JSON.stringify(pricingPackages))} />
-
                 {/* Concrete offering - Show only top 5 */}
                 <Fleet categories={categories.slice(0, 5)} />
 
-                {/* Special Promotional Section */}
-                <KeralaPromoSection data={JSON.parse(JSON.stringify(promoPackage))} />
+                {/* Special Promotional Section - Dynamic from DB (isHero=true) */}
+                <KeralaPromoSection data={heroPackage} />
 
                 {/* Trust before visuals */}
                 <Testimonials />
