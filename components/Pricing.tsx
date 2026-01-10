@@ -2,12 +2,16 @@
 
 import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { PRICING_PACKAGES, WHATSAPP_NUMBER } from '../constants';
+import { WHATSAPP_NUMBER } from '../constants';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 import QuickEnquiryModal from './modals/QuickEnquiryModal';
 
-export const PricingSplitFocus: React.FC = () => {
+interface PricingProps {
+  packages: any[];
+}
+
+export const PricingSplitFocus: React.FC<PricingProps> = ({ packages }) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState('');
@@ -17,6 +21,8 @@ export const PricingSplitFocus: React.FC = () => {
     setSelectedPackage(pkgTitle);
     setIsModalOpen(true);
   };
+
+  if (!packages || packages.length === 0) return null;
 
   return (
     <section ref={containerRef} id="pricing" className="bg-white min-h-screen flex flex-col lg:flex-row">
@@ -34,7 +40,7 @@ export const PricingSplitFocus: React.FC = () => {
         </div>
 
         <div className="space-y-4 gsap-stagger-container">
-          {PRICING_PACKAGES.map((pkg, idx) => (
+          {packages.map((pkg, idx) => (
             <div
               key={pkg.title}
               onMouseEnter={() => setActiveIdx(idx)}
@@ -68,16 +74,13 @@ export const PricingSplitFocus: React.FC = () => {
       </div>
 
       <div className="w-full lg:w-[55%] relative h-[50vh] lg:h-auto overflow-hidden gsap-fade-left">
-        {PRICING_PACKAGES.map((pkg, idx) => (
+        {packages.map((pkg, idx) => (
           <div
             key={pkg.title}
             className={`absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out ${activeIdx === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
               }`}
             style={{
-              backgroundImage: `url(${pkg.title.toLowerCase().includes('day') ? 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/budget.jpg' :
-                pkg.title.toLowerCase().includes('luxury') ? 'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/luxury.webp' :
-                  'https://houseboat-booking.s3.ap-south-1.amazonaws.com/packages/premium.webp'
-                })`
+              backgroundImage: `url(${pkg.images?.hero || '/packages/luxury.webp'})`
             }}
           >
             <div className="absolute inset-0 bg-black/20" />
