@@ -60,7 +60,7 @@ export default function CategoryHero({ category }: { category: Category }) {
                 <div className="container mx-auto px-4 md:px-6 py-4 md:py-8 flex flex-wrap justify-center gap-6 md:gap-24 text-ivory-50">
                     <div className="flex flex-col items-center gap-1 md:gap-2 group">
                         <span className="font-display text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-bronze-500 group-hover:text-bronze-400 transition-colors">Fleet Size</span>
-                        <span className="text-xl md:text-3xl font-serif text-white">{category.stats.totalBoats} Houseboats</span>
+                        <span className="text-xl md:text-3xl font-serif text-white">{category.stats?.totalBoats || 0} Houseboats</span>
                     </div>
                     <div className="w-px h-12 bg-gradient-to-b from-transparent via-bronze-500/20 to-transparent hidden md:block" />
                     <div className="flex flex-col items-center gap-1 md:gap-2 group">

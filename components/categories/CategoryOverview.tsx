@@ -29,7 +29,7 @@ export default function CategoryOverview({ category }: { category: Category }) {
                 </div>
 
                 <div className="grid grid-cols-1 gap-6">
-                    {category.amenities.map((amenity, idx) => (
+                    {(category.amenities || []).map((amenity, idx) => (
                         <div
                             key={idx}
                             className={`flex flex-col md:flex-row gap-4 md:gap-8 items-start group border-b border-forest-900/5 pb-6 last:border-0 hover:pl-2 transition-all duration-500 ease-out`}

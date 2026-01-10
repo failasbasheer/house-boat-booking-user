@@ -13,13 +13,13 @@ export default function CategoryReviews({ category }: { category: Category }) {
                         ))}
                     </div>
                     <span className="text-sm font-medium tracking-wide text-forest-900/60 uppercase">
-                        {category.stats.rating} / 5 Average
+                        {category.stats?.rating || 0} / 5 Average
                     </span>
                 </div>
             </div>
 
             <div className="flex overflow-x-auto gap-8 md:gap-12 pb-8 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-                {category.testimonials.map((review) => (
+                {(category.testimonials || []).map((review) => (
                     <div key={review.id} className="min-w-[300px] md:min-w-[400px] flex-shrink-0 group cursor-pointer">
                         <Quote className="w-10 h-10 text-forest-900/10 mb-6 group-hover:text-bronze-400 transition-colors duration-500" />
                         <p className="text-xl md:text-2xl text-forest-900/80 font-serif italic mb-6 leading-relaxed group-hover:text-forest-950 transition-colors">

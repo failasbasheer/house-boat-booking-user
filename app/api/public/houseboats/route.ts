@@ -5,6 +5,7 @@ import '@/models/Amenity'; // Register Amenity model
 import '@/models/Feature'; // Register Feature model
 
 export const revalidate = 60; // Cache for 1 minute (pricing availability might change)
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
     try {
